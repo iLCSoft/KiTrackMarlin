@@ -1,5 +1,5 @@
-#ifndef FTrackILDTools_h
-#define FTrackILDTools_h
+#ifndef KiTrackMarlinTools_h
+#define KiTrackMarlinTools_h
 
 #include <string>
 #include <set>
