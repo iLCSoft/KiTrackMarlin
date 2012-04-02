@@ -1,7 +1,7 @@
 #include "FTDHitSimple.h"
 
 
-using namespace FTrack;
+using namespace KiTrackMarlin;
 
 FTDHitSimple::FTDHitSimple( float x , float y , float z , int side, unsigned layer , unsigned module, unsigned sensor, const SectorSystemFTD* const sectorSystemFTD ){
    

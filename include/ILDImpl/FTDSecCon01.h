@@ -1,13 +1,13 @@
 #ifndef FTDSecCon01_h
 #define FTDSecCon01_h
 
-#include "ISectorConnector.h"
+#include "KiTrack/ISectorConnector.h"
 
 #include "SectorSystemFTD.h"
 
 
 
-namespace FTrack{
+namespace KiTrackMarlin{
    
    /** Used to connect two sectors.
     * 

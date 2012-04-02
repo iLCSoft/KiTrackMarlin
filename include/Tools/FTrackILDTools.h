@@ -9,9 +9,9 @@
 
 #include "FTDHitSimple.h"
 
-using namespace FTrack;
+using namespace KiTrack;
 
-namespace FTrackILD{
+namespace KiTrackMarlin{
 
 /** @return information about the contents of the passed CellID0 */ 
 std::string getCellID0Info( int cellID0 );

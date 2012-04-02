@@ -12,7 +12,7 @@
 #include <unistd.h>
 
 using namespace std;
-using namespace FTrack;
+using namespace KiTrackMarlin;
 
 namespace {
   #ifdef FINE_GRAINED_LINUX_TIMING

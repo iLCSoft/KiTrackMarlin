@@ -1,23 +1,19 @@
 #ifndef FTDTrack_h
 #define FTDTrack_h
 
-// framework dependent
 #include "IMPL/TrackImpl.h"
-#include "MarlinTrk/Factory.h"
 #include "MarlinTrk/IMarlinTrkSystem.h"
 #include "MarlinTrk/IMarlinTrack.h"
 
-// common 
 #include <vector>
 
-// FTrack
 #include "IFTDHit.h"
-#include "ITrack.h"
+#include "KiTrack/ITrack.h"
 
 #include "Fitter.h"
 
 
-namespace FTrack{
+namespace KiTrackMarlin{
 
 
    /** A class for ITracks containing an lcio::Track at core

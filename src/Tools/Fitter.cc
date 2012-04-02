@@ -88,7 +88,7 @@ void Fitter::fit()throw( FitterException ){
          const LCObjectVec rawObjects = trkHit->getRawHits();                    
          std::vector< TrackerHit* > rawHits;
          for( unsigned k=0; k<rawObjects.size(); k++ ) rawHits.push_back( dynamic_cast< TrackerHit* >( rawObjects[k] ) );
-         std::sort( rawHits.begin(), rawHits.end(), FTrackILD::compare_TrackerHit_z );
+         std::sort( rawHits.begin(), rawHits.end(), KiTrackMarlin::compare_TrackerHit_z );
          
          
          

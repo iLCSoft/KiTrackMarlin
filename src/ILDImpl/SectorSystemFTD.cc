@@ -2,7 +2,8 @@
 
 #include <sstream>
 
-using namespace FTrack;
+using namespace KiTrackMarlin;
+
 
 SectorSystemFTD::SectorSystemFTD( unsigned nLayers , unsigned nModules , unsigned nSensors ):
    
@@ -17,7 +18,7 @@ _nSensors( nSensors ){
    
 
 
-int SectorSystemFTD::getSector( int side, unsigned layer , unsigned module , unsigned sensor )const throw( FTrack::OutOfRange ){
+int SectorSystemFTD::getSector( int side, unsigned layer , unsigned module , unsigned sensor )const throw( KiTrack::OutOfRange ){
    
    //check if the values passed are okay:
    if ( ( side!= 1 )&&( side != -1 ) ){

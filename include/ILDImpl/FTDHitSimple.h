@@ -1,13 +1,13 @@
 #ifndef FTDHitSimple_h
 #define FTDHitSimple_h
 
-#include "IHit.h"
+#include "KiTrack/IHit.h"
 
 #include "SectorSystemFTD.h"
 
 
 
-namespace FTrack{
+namespace KiTrackMarlin{
    
    
    /** A hit 

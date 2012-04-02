@@ -1,7 +1,7 @@
 #include "FTDSecCon00.h"
 
 
-using namespace FTrack;
+using namespace KiTrackMarlin;
 
 
 

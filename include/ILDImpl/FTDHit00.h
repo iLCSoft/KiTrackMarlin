@@ -6,7 +6,7 @@
 
 using namespace lcio;
 
-namespace FTrack{
+namespace KiTrackMarlin{
    
    
    /** A hit used for the ILD_00 model.

@@ -1,7 +1,7 @@
 #ifndef dataharvester_Timer_H_
 #define dataharvester_Timer_H_
 
-namespace FTrack {
+namespace KiTrackMarlin {
 class Timer {
 public:
   /**

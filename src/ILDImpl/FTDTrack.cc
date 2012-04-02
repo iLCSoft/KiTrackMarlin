@@ -11,7 +11,7 @@
 
 
 
-using namespace FTrack;
+using namespace KiTrackMarlin;
 
 /** @return if the absolute z value of hit a is bigger than that of hit b */
 bool compare_IHit_z( IHit* a, IHit* b ){

@@ -4,10 +4,11 @@
 #include "marlin/VerbosityLevels.h"
 
 
-#include "ISectorSystem.h"
+#include "KiTrack/ISectorSystem.h"
 
+using namespace KiTrack;
 
-namespace FTrack{
+namespace KiTrackMarlin{
 
    /** A Sector System class for the Forward Tracking Disks FTD in the ILD.
     * 

@@ -1,15 +1,17 @@
 #ifndef IFTDHit_h
 #define IFTDHit_h
 
-#include "IHit.h"
+
 #include "EVENT/TrackerHit.h"
 #include "lcio.h"
+
+#include "KiTrack/IHit.h"
 
 #include "SectorSystemFTD.h"
 
 using namespace lcio;
 
-namespace FTrack{
+namespace KiTrackMarlin{
    
    
    /** An interface for a hit for the ILD using an lcio TrackerHit as basis.

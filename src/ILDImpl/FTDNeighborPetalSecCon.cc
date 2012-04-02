@@ -1,8 +1,7 @@
 #include "FTDNeighborPetalSecCon.h"
 
 
-using namespace FTrack;
-
+using namespace KiTrackMarlin;
 
 
 FTDNeighborPetalSecCon::FTDNeighborPetalSecCon( const SectorSystemFTD* sectorSystemFTD ){

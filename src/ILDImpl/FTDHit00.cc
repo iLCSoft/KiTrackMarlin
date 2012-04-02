@@ -3,7 +3,8 @@
 
 #include "UTIL/ILDConf.h"
 
-using namespace FTrack;
+using namespace KiTrackMarlin;
+
 
 FTDHit00::FTDHit00( TrackerHit* trackerHit , const SectorSystemFTD* const sectorSystemFTD ){
    

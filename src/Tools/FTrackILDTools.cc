@@ -10,8 +10,10 @@
 
 #include <UTIL/ILDConf.h>
 
+using namespace KiTrackMarlin;
 
-std::string FTrackILD::getCellID0Info( int cellID0 ){
+
+std::string KiTrackMarlin::getCellID0Info( int cellID0 ){
    
    std::stringstream s;
    
@@ -31,7 +33,7 @@ std::string FTrackILD::getCellID0Info( int cellID0 ){
    
 }
 
-int FTrackILD::getCellID0Layer( int cellID0 ){
+int KiTrackMarlin::getCellID0Layer( int cellID0 ){
    
    
    UTIL::BitField64  cellID( UTIL::ILDCellID0::encoder_string );
@@ -47,7 +49,7 @@ int FTrackILD::getCellID0Layer( int cellID0 ){
 //TODO: don't assume a fileending of .root. Be more flexible! (Maybe even write a more general routine dealing with any file
 
 
-void FTrackILD::setUpRootFile( std::string rootNamePath, std::string treeName ,  std::set<std::string> branchNames , bool createNew ){
+void KiTrackMarlin::setUpRootFile( std::string rootNamePath, std::string treeName ,  std::set<std::string> branchNames , bool createNew ){
    
    
    std::string fileNamePath = rootNamePath.substr( 0 , rootNamePath.find_last_of(".")  );
@@ -106,7 +108,7 @@ void FTrackILD::setUpRootFile( std::string rootNamePath, std::string treeName , 
 
 
 
-void FTrackILD::saveToRoot( std::string rootFileName, std::string treeName , std::map < std::string , float > map_name_data ){
+void KiTrackMarlin::saveToRoot( std::string rootFileName, std::string treeName , std::map < std::string , float > map_name_data ){
    
    
    
@@ -136,7 +138,7 @@ void FTrackILD::saveToRoot( std::string rootFileName, std::string treeName , std
    
 }
 
-void FTrackILD::saveToRoot( std::string rootFileName, std::string treeName , std::vector < std::map < std::string , float > > rootDataVec ){
+void KiTrackMarlin::saveToRoot( std::string rootFileName, std::string treeName , std::vector < std::map < std::string , float > > rootDataVec ){
    
    
    
@@ -173,7 +175,7 @@ void FTrackILD::saveToRoot( std::string rootFileName, std::string treeName , std
 }
 
 
-bool FTrackILD::compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b ){
+bool KiTrackMarlin::compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b ){
    
    return ( fabs(a->getPosition()[2]) < fabs( b->getPosition()[2]) ); //compare their z values
    
@@ -182,7 +184,7 @@ bool FTrackILD::compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b
 
 
 
-FTDHitSimple* FTrackILD::createVirtualIPHit( int side , const SectorSystemFTD* sectorSystemFTD ){
+FTDHitSimple* KiTrackMarlin::createVirtualIPHit( int side , const SectorSystemFTD* sectorSystemFTD ){
    
    unsigned layer = 0;
    unsigned module = 0;
