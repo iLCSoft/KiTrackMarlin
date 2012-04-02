@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "IFTDHit.h"
+#include "ILDImpl/IFTDHit.h"
 #include "KiTrack/ITrack.h"
 
 #include "Tools/Fitter.h"

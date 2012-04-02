@@ -1,7 +1,7 @@
 #ifndef FTDHit01_h
 #define FTDHit01_h
 
-#include "IFTDHit.h"
+#include "ILDImpl/IFTDHit.h"
 
 
 using namespace lcio;
