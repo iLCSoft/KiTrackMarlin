@@ -10,7 +10,7 @@
 #include "IFTDHit.h"
 #include "KiTrack/ITrack.h"
 
-#include "Fitter.h"
+#include "Tools/Fitter.h"
 
 
 namespace KiTrackMarlin{

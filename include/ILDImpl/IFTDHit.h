@@ -7,7 +7,7 @@
 
 #include "KiTrack/IHit.h"
 
-#include "SectorSystemFTD.h"
+#include "ILDImpl/SectorSystemFTD.h"
 
 using namespace lcio;
 

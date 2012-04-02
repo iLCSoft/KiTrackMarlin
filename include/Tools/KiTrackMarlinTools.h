@@ -7,7 +7,7 @@
 
 #include "EVENT/TrackerHit.h"
 
-#include "FTDHitSimple.h"
+#include "ILDImpl/FTDHitSimple.h"
 
 using namespace KiTrack;
 

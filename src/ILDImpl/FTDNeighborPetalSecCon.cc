@@ -1,4 +1,4 @@
-#include "FTDNeighborPetalSecCon.h"
+#include "ILDImpl/FTDNeighborPetalSecCon.h"
 
 
 using namespace KiTrackMarlin;

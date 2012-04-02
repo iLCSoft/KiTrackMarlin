@@ -1,4 +1,4 @@
-#include "Fitter.h"
+#include "Tools/Fitter.h"
 
 #include <algorithm>
 
@@ -8,7 +8,7 @@
 
 #include "MarlinTrk/HelixTrack.h"
 
-#include "KiTrackMarlinTools.h"
+#include "Tools/KiTrackMarlinTools.h"
 
 using namespace MarlinTrk;
 
