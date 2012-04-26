@@ -161,11 +161,11 @@ void Fitter::fit()throw( FitterException ){
       covMatrix[icov] = 0;
    }
    
-   covMatrix[0]  = ( 1.e4 ); //sigma_d0^2
-   covMatrix[2]  = ( 1.e4 ); //sigma_phi0^2
-   covMatrix[5]  = ( 1.e4 ); //sigma_omega^2
-   covMatrix[9]  = ( 1.e4 ); //sigma_z0^2
-   covMatrix[14] = ( 1.e4 ); //sigma_tanl^2
+   covMatrix[0]  = ( 1.e6 ); //sigma_d0^2
+   covMatrix[2]  = ( 1.e2 ); //sigma_phi0^2
+   covMatrix[5]  = ( 1.e-4 ); //sigma_omega^2
+   covMatrix[9]  = ( 1.e6 ); //sigma_z0^2
+   covMatrix[14] = ( 1.e2 ); //sigma_tanl^2
    
    
    TrackStateImpl trackState( TrackState::AtOther, 
