@@ -50,7 +50,7 @@ public:
    TrackStatePlus( const TrackState* trackState, double chi2, int Ndf ):
       _trackState( trackState ), _chi2( chi2 ), _Ndf( Ndf ){}
    
-   ~TrackStatePlus(){ delete _trackState; }
+   
    
 private: 
    
@@ -70,8 +70,10 @@ class Fitter{
    
 public:
    
-   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem );
-   Fitter( std::vector < TrackerHit* > trackerHits, MarlinTrk::IMarlinTrkSystem* trkSystem );
+   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException );
+   Fitter( std::vector < TrackerHit* > trackerHits, MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException );
+   
+
    
    double getChi2Prob( int trackStateLocation ) throw( FitterException );
    double getChi2( int trackStateLocation ) throw( FitterException );
@@ -84,7 +86,12 @@ public:
    
    ~Fitter(){ 
       
-      for( unsigned i=0; i<_trackStatesPlus.size(); i++ ) delete _trackStatesPlus[i];
+      for( unsigned i=0; i<_trackStatesPlus.size(); i++ ){
+         
+         delete _trackStatesPlus[i]->getTrackState();
+         delete _trackStatesPlus[i];
+         
+      }
       _trackStatesPlus.clear();
       
       delete _marlinTrk;
@@ -108,6 +115,11 @@ private:
    MarlinTrk::IMarlinTrkSystem* _trkSystem;
    
    MarlinTrk::IMarlinTrack* _marlinTrk;
+   
+   // No copy constructor or assignment needed so far. so private for safety
+   // If they are needed, they need to be implemented in a clean way first!
+   Fitter( const Fitter& f ){};
+   Fitter& operator= ( Fitter const& f ){return *this;}
    
 };
 

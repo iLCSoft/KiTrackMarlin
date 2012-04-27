@@ -25,16 +25,18 @@ bool compare_IHit_z( IHit* a, IHit* b ){
 FTDTrack::FTDTrack( MarlinTrk::IMarlinTrkSystem* trkSystem ){
    
    _trkSystem = trkSystem;
+   _chi2Prob = 0.;
  
    _lcioTrack = new TrackImpl();
    
    
 }
 
-FTDTrack::FTDTrack( std::vector< IHit* > hits , MarlinTrk::IMarlinTrkSystem* trkSystem ){
+FTDTrack::FTDTrack( std::vector< IFTDHit* > hits , MarlinTrk::IMarlinTrkSystem* trkSystem ){
    
    
    _trkSystem = trkSystem;
+   _chi2Prob = 0.;
    
    _lcioTrack = new TrackImpl();
    
@@ -62,6 +64,7 @@ FTDTrack::FTDTrack( const FTDTrack& f ){
 
 FTDTrack & FTDTrack::operator= (const FTDTrack & f){
    
+   if (this == &f) return *this;   //protect against self assignment
    
    //make a new copied lcio track
    _lcioTrack = new TrackImpl( *f._lcioTrack );
@@ -77,22 +80,22 @@ FTDTrack & FTDTrack::operator= (const FTDTrack & f){
 
 
 
-void FTDTrack::addHit( IHit* hit ){
+void FTDTrack::addHit( IFTDHit* hit ){
    
    
    
    // add the hit
-   IFTDHit* ftdHit = dynamic_cast< IFTDHit* >( hit );
+//    IFTDHit* ftdHit = dynamic_cast< IFTDHit* >( hit );
    
-   if ( ftdHit != NULL ){
+   if ( hit != NULL ){
       
-      _hits.push_back( ftdHit );
+      _hits.push_back( hit );
       
       // and sort the track again
       sort( _hits.begin(), _hits.end(), compare_IHit_z );
       
       
-      _lcioTrack->addHit( ftdHit->getTrackerHit() );
+      _lcioTrack->addHit( hit->getTrackerHit() );
       
    }
    //TODO: throw exception, if cast was not succesfull. Question: is there a better way of dealing with this?

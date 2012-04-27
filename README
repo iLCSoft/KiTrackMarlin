@@ -26,6 +26,7 @@ Version History
  | changes since last version  |
   -----------------------------
  
+      - no more dynamic castings in FTDTrack -> the added hits have to be IFTDHits
 
   ---------
  | v01-00  |

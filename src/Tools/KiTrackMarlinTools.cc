@@ -118,7 +118,12 @@ void KiTrackMarlin::saveToRoot( std::string rootFileName, std::string treeName ,
    TFile*   myRootFile = new TFile( rootFileName.c_str(), "UPDATE"); //add values to the root file
    TTree*   myTree = dynamic_cast <TTree*>( myRootFile->Get( treeName.c_str()) );
    
-   
+   if( myTree == NULL ){
+      
+      streamlog_out( ERROR ) << "could not get tree " << treeName << "\n";
+      return;
+      
+   }
    
    
    for( it = map_name_data.begin() ; it != map_name_data.end() ; it++){
@@ -147,6 +152,13 @@ void KiTrackMarlin::saveToRoot( std::string rootFileName, std::string treeName ,
    
    TFile*   myRootFile = new TFile( rootFileName.c_str(), "UPDATE"); //add values to the root file
    TTree*   myTree = dynamic_cast <TTree*>( myRootFile->Get( treeName.c_str()) );
+   
+   if( myTree == NULL ){
+      
+      streamlog_out( ERROR ) << "could not get tree " << treeName << "\n";
+      return;
+      
+   }
    
    
    for( unsigned i=0; i<rootDataVec.size(); i++ ){ //for all entries

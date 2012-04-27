@@ -34,7 +34,7 @@ bool compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b ){
 
 
 
-Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem ): _trkSystem( trkSystem ){
+Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException ): _trkSystem( trkSystem ){
    
  
    _trackerHits = track->getTrackerHits();
@@ -44,13 +44,15 @@ Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem ): _trkSys
    
 }
 
-Fitter::Fitter( std::vector < TrackerHit* > trackerHits , MarlinTrk::IMarlinTrkSystem* trkSystem ): _trkSystem( trkSystem ){
+Fitter::Fitter( std::vector < TrackerHit* > trackerHits , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException ): _trkSystem( trkSystem ){
    
    _trackerHits = trackerHits;
    
    fit();
    
 }
+
+
 
 
 void Fitter::fit()throw( FitterException ){
@@ -185,12 +187,26 @@ void Fitter::fit()throw( FitterException ){
    /*       Do the fit                                                                           */
    /**********************************************************************************************/
    
-   int fit_status = _marlinTrk->fit() ; 
+   int fit_status = 0;
+   
+   try{
+      
+      fit_status = _marlinTrk->fit() ; 
+      
+   }
+   catch( MarlinTrk::Exception e ){
+      
+      std::stringstream s;
+      s << "Fitter::fit(): Couldn't fit, MarlinTrk->fit() gave: " << e.what() << "\n";
+      throw FitterException( s.str() );
+      
+   }
    
    if( fit_status != IMarlinTrack::success ){ 
       
       std::stringstream s;
       s << "Fitter::fit(): MarlinTrk->fit() wasn't successful, fit_status = " << fit_status << "\n";
+      throw FitterException( s.str() );
     
    }
    

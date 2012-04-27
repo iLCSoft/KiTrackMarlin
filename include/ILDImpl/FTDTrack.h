@@ -29,7 +29,7 @@ namespace KiTrackMarlin{
       /** @param hits The hits the track consists of 
        * @param trkSystem An IMarlinTrkSystem, which is needed for fitting of the tracks
        */
-      FTDTrack( std::vector< IHit* > hits , MarlinTrk::IMarlinTrkSystem* trkSystem );
+      FTDTrack( std::vector< IFTDHit* > hits , MarlinTrk::IMarlinTrkSystem* trkSystem );
       FTDTrack( const FTDTrack& f );
       FTDTrack & operator= (const FTDTrack & f);
       
@@ -39,7 +39,7 @@ namespace KiTrackMarlin{
       TrackImpl* getLcioTrack(){ return ( _lcioTrack );}
       
     
-      void addHit( IHit* hit );
+      void addHit( IFTDHit* hit );
       
       virtual double getNdf() const { return _lcioTrack->getNdf(); }
       virtual double getChi2() const { return _lcioTrack->getChi2(); }
