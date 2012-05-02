@@ -27,6 +27,8 @@ Version History
   -----------------------------
  
       - no more dynamic castings in FTDTrack -> the added hits have to be IFTDHits
+      - Added doxygen mainpage
+
 
   ---------
  | v01-00  |
