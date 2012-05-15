@@ -26,6 +26,8 @@ Version History
  | changes since last version  |
   -----------------------------
 
+      - Added FTDHelixFitter class, to fast fit a track with the HelixFit class from MarlinTrk
+
   ---------
  | v01-01  |
   ---------
