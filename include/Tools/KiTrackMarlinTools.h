@@ -4,6 +4,7 @@
 #include <string>
 #include <set>
 #include <vector>
+#include <sstream>
 
 #include "EVENT/TrackerHit.h"
 
@@ -65,7 +66,13 @@ bool compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b );
 FTDHitSimple* createVirtualIPHit( int side , const SectorSystemFTD* sectorSystemFTD );
 
 
-}
+std::string getPositionInfo( EVENT::TrackerHit* hit );
+
+
+} // end of namespace KiTrackMarlin
+
+
+
 
 #endif
 

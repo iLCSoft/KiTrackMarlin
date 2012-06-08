@@ -105,11 +105,11 @@ void FTDHelixFitter::fit()throw( FTDHelixFitterException ){
    helixFitter.fastHelixFit(nHits, xh, yh, rh, ph, wrh, zh, wzh,iopt, par, epar, chi2RPhi, chi2Z);
    par[3] = par[3]*par[0]/fabs(par[0]);
    
-   //    float omega = par[0];
-   //    float tanlambda = par[1];
-   //    float phi0 = par[2];
-   //    float d0 = par[3];
-   //    float z0 = par[4];
+   _omega = par[0];
+   _tanLambda = par[1];
+   _phi0 = par[2];
+   _d0 = par[3];
+   _z0 = par[4];
    
    float chi2 = chi2RPhi*1+chi2Z*0.5; //TODO: this is hardcoded, ask steve about this specific values
    int Ndf = 2*nHits-5;

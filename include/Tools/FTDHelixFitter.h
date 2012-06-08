@@ -53,7 +53,11 @@ public:
    double getChi2(){ return _chi2; }
    int getNdf(){ return _Ndf; }
    
-   
+   float getOmega(){ return _omega; }
+   float getTanLambda(){ return _tanLambda; }
+   float getPhi0(){ return _phi0; }
+   float getD0(){ return _d0; }
+   float getZ0(){ return _z0; }
    
 private:
    
@@ -63,6 +67,12 @@ private:
    
    double _chi2;
    int _Ndf;
+   
+   float _omega;
+   float _tanLambda;
+   float _phi0;
+   float _d0;
+   float _z0;
    
    std::vector< TrackerHit* > _trackerHits;
   

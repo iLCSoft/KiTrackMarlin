@@ -210,5 +210,18 @@ FTDHitSimple* KiTrackMarlin::createVirtualIPHit( int side , const SectorSystemFT
    
 }
 
+std::string KiTrackMarlin::getPositionInfo( EVENT::TrackerHit* hit ){
+   
+   std::stringstream info;
+   
+   double x = hit->getPosition()[0];
+   double y = hit->getPosition()[1];
+   double z = hit->getPosition()[2];
+   
+   info << "(" << x << "," << y << "," << z << ")";
+   
+   return info.str();
+   
+}
 
 
