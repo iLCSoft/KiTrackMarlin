@@ -30,6 +30,7 @@ Version History
  | v01-02  |
   ---------
 
+      - Fitter now accepts 6 degrees of freedom or more (instead of 8 as until now)
       - Added FTDHelixFitter class, to fast fit a track with the HelixFit class from MarlinTrk
 
   ---------
