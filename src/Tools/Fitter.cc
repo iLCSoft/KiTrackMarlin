@@ -124,10 +124,10 @@ void Fitter::fit()throw( FitterException ){
       
    }
    
-   if( ndof_added < 8 ) {
+   if( ndof_added < 6 ) {
       
       std::stringstream s;
-      s << "Fitter::fit(): Cannot fit less with less than 8 degrees of freedom. Number of hits =  " << number_of_added_hits << " ndof = " << ndof_added << "\n";
+      s << "Fitter::fit(): Cannot fit less with less than 6 degrees of freedom. Number of hits =  " << number_of_added_hits << " ndof = " << ndof_added << "\n";
       
       throw FitterException( s.str() );
       
