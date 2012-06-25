@@ -26,6 +26,8 @@ Version History
  | changes since last version  |
   -----------------------------
   
+      - Removed FTDHit00 as it is not used or supported anymore
+  
   ---------
  | v01-02  |
   ---------
