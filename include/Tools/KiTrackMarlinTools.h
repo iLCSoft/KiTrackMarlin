@@ -37,7 +37,7 @@ int getCellID0Layer( int cellID0 );
  */
 void setUpRootFile( std::string fileNamePath, std::string treeName , std::set<std::string> branchNames = std::set<std::string>() , bool createNew=true );
 
-// TODO: find a nice way to overload this for different datatypes (int, double, bool)
+
 /** Saves values to a tree in a rootfile.
  * 
  * @param fileNamePath the name (path) of the rootfile
@@ -62,7 +62,6 @@ bool compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b );
 
 
 
-//TODO: is this the best way???
 FTDHitSimple* createVirtualIPHit( int side , const SectorSystemFTD* sectorSystemFTD );
 
 
