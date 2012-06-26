@@ -1,5 +1,5 @@
-#ifndef FTDSecCon01_h
-#define FTDSecCon01_h
+#ifndef FTDSectorConnector_h
+#define FTDSectorConnector_h
 
 #include "KiTrack/ISectorConnector.h"
 
@@ -9,9 +9,8 @@
 
 namespace KiTrackMarlin{
    
-   /** Used to connect two sectors.
+   /** Used to connect two sectors on the FTD.
     * 
-    * made for the ILD_01 geometry (thus the 01 in the name) 
     * 
     * Allows:
     * 
@@ -19,7 +18,7 @@ namespace KiTrackMarlin{
     * - going to same petal or petals around (how far see constructor)
     * - jumping to the IP (from where see constructor)
     */   
-   class FTDSecCon01 : public ISectorConnector{
+   class FTDSectorConnector : public ISectorConnector{
       
       
    public:
@@ -30,11 +29,12 @@ namespace KiTrackMarlin{
        * 
        *  @param lastLayerToIP the highest layer from where a direct jump to the IP is allowed
        */
-      FTDSecCon01 ( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax , unsigned lastLayerToIP);
+      FTDSectorConnector ( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax , unsigned lastLayerToIP);
       
+      /** @return a set of all sectors that are connected to the passed sector */
       virtual std::set <int>  getTargetSectors ( int sector );
       
-      virtual ~FTDSecCon01(){};
+      virtual ~FTDSectorConnector(){};
       
    private:
       

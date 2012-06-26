@@ -27,6 +27,8 @@ Version History
   -----------------------------
   
       - Removed FTDHit00 as it is not used or supported anymore
+      - Removed FTDSecCon00 as it is not used or supported anymore
+      - Renamed FTDSecCon01 to FTDSectorConnector
   
   ---------
  | v01-02  |

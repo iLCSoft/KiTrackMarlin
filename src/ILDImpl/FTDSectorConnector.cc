@@ -1,11 +1,11 @@
-#include "ILDImpl/FTDSecCon01.h"
+#include "ILDImpl/FTDSectorConnector.h"
 
 
 using namespace KiTrackMarlin;
 
 
 
-FTDSecCon01::FTDSecCon01( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax, unsigned lastLayerToIP){
+FTDSectorConnector::FTDSectorConnector( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax, unsigned lastLayerToIP){
    
    _sectorSystemFTD = sectorSystemFTD;
    _layerStepMax = layerStepMax;
@@ -16,7 +16,7 @@ FTDSecCon01::FTDSecCon01( const SectorSystemFTD* sectorSystemFTD , unsigned laye
 
 
 
-std::set< int > FTDSecCon01::getTargetSectors ( int sector ){
+std::set< int > FTDSectorConnector::getTargetSectors ( int sector ){
    
    
    
