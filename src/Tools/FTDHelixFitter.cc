@@ -111,7 +111,7 @@ void FTDHelixFitter::fit()throw( FTDHelixFitterException ){
    _d0 = par[3];
    _z0 = par[4];
    
-   float chi2 = chi2RPhi*1+chi2Z*0.5; //TODO: this is hardcoded, ask steve about this specific values
+   float chi2 = chi2RPhi+chi2Z;
    int Ndf = 2*nHits-5;
    
    

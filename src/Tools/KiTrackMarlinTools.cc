@@ -46,8 +46,6 @@ int KiTrackMarlin::getCellID0Layer( int cellID0 ){
 
 
 
-//TODO: don't assume a fileending of .root. Be more flexible! (Maybe even write a more general routine dealing with any file
-
 
 void KiTrackMarlin::setUpRootFile( std::string rootNamePath, std::string treeName ,  std::set<std::string> branchNames , bool createNew ){
    
