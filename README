@@ -22,13 +22,14 @@ Version History
 =============================================================================================================
  
 
-  -----------------------------
- | changes since last version  |
-  -----------------------------
+  ---------
+ | v01-03  |
+  ---------
   
       - Removed FTDHit00 as it is not used or supported anymore
       - Removed FTDSecCon00 as it is not used or supported anymore
       - Renamed FTDSecCon01 to FTDSectorConnector
+      - Changed weight of chi2 in RPhi and Z for the FTDHelixFitter 
   
   ---------
  | v01-02  |
