@@ -20,7 +20,12 @@
 
 Version History
 =============================================================================================================
- 
+
+  ------------
+ | v01-03-01  |
+  ------------
+
+      - Modified to match TrackStateImpl copy constructor, uses const reference instead of pointer. 
 
   ---------
  | v01-03  |
