@@ -21,6 +21,12 @@
 Version History
 =============================================================================================================
 
+  ---------
+ | v01-04  |
+  ---------
+  
+  - KiTrackMarlinTools: added convenience methods for output of track-hit information
+
   ------------
  | v01-03-01  |
   ------------
