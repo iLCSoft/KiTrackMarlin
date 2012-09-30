@@ -7,8 +7,10 @@
 #include <sstream>
 
 #include "EVENT/TrackerHit.h"
+#include "EVENT/Track.h"
 
 #include "ILDImpl/FTDHitSimple.h"
+#include "KiTrack/ITrack.h"
 
 using namespace KiTrack;
 
@@ -67,6 +69,9 @@ FTDHitSimple* createVirtualIPHit( int side , const SectorSystemFTD* sectorSystem
 
 std::string getPositionInfo( EVENT::TrackerHit* hit );
 
+std::string getPositionInfo( IHit* hit );   
+
+std::string getTrackHitInfo( ITrack* track );
 
 } // end of namespace KiTrackMarlin
 

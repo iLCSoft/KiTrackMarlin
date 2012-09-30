@@ -222,4 +222,36 @@ std::string KiTrackMarlin::getPositionInfo( EVENT::TrackerHit* hit ){
    
 }
 
+std::string KiTrackMarlin::getPositionInfo( IHit* hit ){
+   
+   std::stringstream info;
+   
+   double x = hit->getX();
+   double y = hit->getY();
+   double z = hit->getZ();
+   
+   info << "(" << x << "," << y << "," << z << ")";
+   
+   return info.str();
+   
+}
+
+
+std::string KiTrackMarlin::getTrackHitInfo( ITrack* track){
+   
+   std::stringstream info;
+   
+   std::vector< IHit* > hits = track->getHits();
+   
+   for( unsigned i=0; i < hits.size(); i++ ){
+      
+      info << getPositionInfo( hits[i] );
+      
+   };
+   
+   return info.str();
+   
+   
+}
+
 
