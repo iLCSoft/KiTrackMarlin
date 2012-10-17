@@ -73,6 +73,9 @@ std::string getPositionInfo( IHit* hit );
 
 std::string getTrackHitInfo( ITrack* track );
 
+std::string getTrackHitInfo( EVENT::Track* track );
+
+
 } // end of namespace KiTrackMarlin
 
 
