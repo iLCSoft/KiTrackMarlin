@@ -191,6 +191,14 @@ bool KiTrackMarlin::compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHi
    
 }
 
+bool KiTrackMarlin::compare_TrackerHit_R( EVENT::TrackerHit* a, EVENT::TrackerHit* b ){
+
+  double Rad_a2 = (a->getPosition()[0]*a->getPosition()[0]) + (a->getPosition()[1]*a->getPosition()[1]) ;
+  double Rad_b2 = (b->getPosition()[0]*b->getPosition()[0]) + (b->getPosition()[1]*b->getPosition()[1]) ;
+  
+  return ( Rad_a2 < Rad_b2 ); //compare their radii
+   
+}
 
 
 
@@ -207,6 +215,22 @@ FTDHitSimple* KiTrackMarlin::createVirtualIPHit( int side , const SectorSystemFT
    return virtualIPHit;
    
 }
+
+
+VXDHitSimple* KiTrackMarlin::createVirtualIPHit( const SectorSystemVXD* sectorSystemVXD ){
+   
+   int layer = 0 ;
+   int phi = 0 ;
+   int theta = 0 ;
+
+   VXDHitSimple* virtualIPHit = new VXDHitSimple( 0.,0.,0., layer, phi, theta, sectorSystemVXD );
+
+   virtualIPHit->setIsVirtual ( true );
+   
+   return virtualIPHit;
+   
+}
+
 
 std::string KiTrackMarlin::getPositionInfo( EVENT::TrackerHit* hit ){
    

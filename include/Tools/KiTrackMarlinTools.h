@@ -10,6 +10,7 @@
 #include "EVENT/Track.h"
 
 #include "ILDImpl/FTDHitSimple.h"
+#include "ILDImpl/VXDHitSimple.h"
 #include "KiTrack/ITrack.h"
 
 using namespace KiTrack;
@@ -63,8 +64,18 @@ void saveToRoot( std::string rootFileName, std::string treeName , std::vector < 
 bool compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b );
 
 
+/** method that compares two TrackerHits.
+ * 
+ * @return true if |a.R| < |b.R| , i.e. true if a has smaller radius than b 
+ *
+ * to be used at the VXD-SIT system
+ */
+bool compare_TrackerHit_R( EVENT::TrackerHit* a, EVENT::TrackerHit* b );
+
 
 FTDHitSimple* createVirtualIPHit( int side , const SectorSystemFTD* sectorSystemFTD );
+
+VXDHitSimple* createVirtualIPHit( const SectorSystemVXD* sectorSystemVXD );
 
 
 std::string getPositionInfo( EVENT::TrackerHit* hit );
@@ -74,7 +85,6 @@ std::string getPositionInfo( IHit* hit );
 std::string getTrackHitInfo( ITrack* track );
 
 std::string getTrackHitInfo( EVENT::Track* track );
-
 
 } // end of namespace KiTrackMarlin
 

@@ -72,7 +72,7 @@ public:
    
    Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException );
    Fitter( std::vector < TrackerHit* > trackerHits, MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException );
-   
+   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag )throw( FitterException );  
 
    
    double getChi2Prob( int trackStateLocation ) throw( FitterException );
@@ -103,6 +103,8 @@ private:
    const TrackStatePlus* getTrackStatePlus( int trackStateLocation ) throw( FitterException );
 
    void fit()throw( FitterException );
+
+   void fitVXD()throw( FitterException );
    
    static float _bField;
    
