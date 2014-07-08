@@ -22,6 +22,13 @@ Version History
 =============================================================================================================
 
   ---------
+ | v01-05  |
+  ---------
+
+  - Implementation of classes for tracking at VXD using mini - vectors, based on the cellular automaton algorithm
+
+
+  ---------
  | v01-04  |
   ---------
   
