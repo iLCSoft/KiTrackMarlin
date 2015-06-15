@@ -100,6 +100,8 @@ public:
    
 private:
    
+   void init_BField();
+
    const TrackStatePlus* getTrackStatePlus( int trackStateLocation ) throw( FitterException );
 
    void fit()throw( FitterException );

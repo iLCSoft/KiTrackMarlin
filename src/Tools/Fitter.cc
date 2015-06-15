@@ -15,7 +15,15 @@ using namespace MarlinTrk;
 
 
 
-float Fitter::_bField = 3.5;
+float Fitter::_bField = 3.5;//later on overwritten with the value read by geo file
+
+void Fitter::init_BField(){
+  const gear::GearMgr* gearMgr = marlin::Global::GEAR; 
+  _bField = gearMgr->getBField().at( gear::Vector3D( 0.,0.,0.)  ).z() ;
+  streamlog_out(DEBUG1) << "---- Fitter - init_BField - _bField = " << _bField << std::endl;       
+}
+
+
 
 
 bool compare_TrackerHit_z( EVENT::TrackerHit* a, EVENT::TrackerHit* b ){
@@ -161,6 +169,7 @@ void Fitter::fitVXD()throw( FitterException ){
    const double* x2 = added_hits[ added_hits.size()/2 ]->getPosition();
    const double* x3 = added_hits.back()->getPosition();
    
+   init_BField();
    HelixTrack helixTrack( x1, x2, x3, _bField, HelixTrack::forwards );
    
    helixTrack.moveRefPoint(0.0, 0.0, 0.0);
@@ -195,7 +204,8 @@ void Fitter::fitVXD()throw( FitterException ){
                               helixTrack.getTanLambda(), 
                               covMatrix, 
                               referencePoint) ;
-                              
+                         
+   //init_BField();
    _marlinTrk->initialise( trackState, _bField, IMarlinTrack::backward ) ;
    
    //     _marlinTrk->initialise( IMarlinTrack::backward ) ;
@@ -356,6 +366,7 @@ void Fitter::fit()throw( FitterException ){
    const double* x2 = added_hits[ added_hits.size()/2 ]->getPosition();
    const double* x3 = added_hits.back()->getPosition();
    
+   init_BField();
    HelixTrack helixTrack( x1, x2, x3, _bField, HelixTrack::forwards );
    
    helixTrack.moveRefPoint(0.0, 0.0, 0.0);
@@ -391,6 +402,7 @@ void Fitter::fit()throw( FitterException ){
                               covMatrix, 
                               referencePoint) ;
                               
+   //init_BField();
    _marlinTrk->initialise( trackState, _bField, IMarlinTrack::backward ) ;
    
    //     _marlinTrk->initialise( IMarlinTrack::backward ) ;
