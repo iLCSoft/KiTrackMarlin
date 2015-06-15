@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "gear/GEAR.h"
+#include "gear/BField.h"
 #include "marlin/Global.h"
 #include "UTIL/ILDConf.h"
 
