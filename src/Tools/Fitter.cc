@@ -7,6 +7,9 @@
 #include "marlin/Global.h"
 #include "UTIL/ILDConf.h"
 
+#include "DD4hep/LCDD.h"
+#include "MarlinTrk/MarlinDDKalTest.h"
+
 #include "MarlinTrk/HelixTrack.h"
 
 #include "Tools/KiTrackMarlinTools.h"
@@ -644,16 +647,58 @@ const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( 
          UTIL::BitField64 encoder( lcio::ILDCellID0::encoder_string ) ; 
          encoder.reset() ;  // reset to 0
          
-         encoder[lcio::ILDCellID0::subdet] = lcio::ILDDetID::ECAL ;
-         encoder[lcio::ILDCellID0::side] = lcio::ILDDetID::barrel;
+	 // ================== need to get the correct ID(s) for the calorimeter face  ============================
+	 
+	 unsigned ecal_barrel_face_ID = lcio::ILDDetID::ECAL ;
+	 unsigned ecal_endcap_face_ID = lcio::ILDDetID::ECAL ;
+	 
+	 //
+	 // FG: this is a temporary workaround for the time where we have Mokka/Gear based tracking systems and DD4hep based 
+	 // ones. The reason for this being that DD4hep does not allow to use the same system ID for different subdetectors
+	 // and we have introduced additional 'tagging' detectors just inside the Ecal barrel and endcap ...
+	 //
+	 MarlinTrk::IMarlinTrkSystem* trksystem =  MarlinTrk::Factory::getCurrentMarlinTrkSystem() ;
+	 
+	 MarlinDDKalTest* ddtrksys = dynamic_cast< MarlinDDKalTest* >( trksystem ) ;
+	 
+	 if( ddtrksys != 0 ) { // we are in DD4hep world ....
+	   
+	   DD4hep::Geometry::LCDD& lcdd = DD4hep::Geometry::LCDD::getInstance();
+	   
+	   try{ 
+	     DD4hep::Geometry::DetElement bfDE = lcdd.detector("EcalBarrelFace") ;
+	     
+	     ecal_barrel_face_ID = bfDE.id() ;
+	     
+	   } catch( std::runtime_error ){
+	     
+	     streamlog_out( WARNING ) << " Cannot get detector EcalBarrelFace - will not be able to compute track state at calo face "<< std::endl ;
+	   }
+	   try{ 
+	     DD4hep::Geometry::DetElement efDE = lcdd.detector("EcalEndcapFace") ;
+	     
+	     ecal_endcap_face_ID = efDE.id() ;
+	     
+	   } catch( std::runtime_error ){
+	     
+	     streamlog_out( WARNING ) << " Cannot get detector EcalEndcapFace - will not be able to compute track state at calo face "<< std::endl ;
+	   }
+	 }
+	 //=========================================================================================================
+
+
+
+         encoder[lcio::ILDCellID0::subdet] =  ecal_barrel_face_ID ;
+         encoder[lcio::ILDCellID0::side]   = lcio::ILDDetID::barrel;
          encoder[lcio::ILDCellID0::layer]  = 0 ;
          
          int detElementID = 0;
          return_code = _marlinTrk->propagateToLayer(encoder.lowWord(), last_hit_in_fit, *trackStateImpl, chi2, ndf, detElementID, IMarlinTrack::modeForward ) ;
          
          if (return_code == MarlinTrk::IMarlinTrack::no_intersection ) { // try forward or backward
-            
-            
+	   
+	   encoder[lcio::ILDCellID0::subdet] = ecal_endcap_face_ID ;
+
             const TrackState* trkStateLastHit = getTrackStatePlus( lcio::TrackState::AtLastHit )->getTrackState();
             
             if (trkStateLastHit->getTanLambda()>0) {
