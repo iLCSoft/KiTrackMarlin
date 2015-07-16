@@ -20,6 +20,12 @@
 
 Version History
 =============================================================================================================
+  ---------
+ | v01-07  |
+  ---------
+    - added workaround to Tools/Fitter.cc for getting the correct system ID 
+      of the calorimeter face (barrel and endcap)  if run w/ lcgeo output  ( F.Gaede )
+    -> depends now on DD4hep
 
   ---------
  | v01-06  |
