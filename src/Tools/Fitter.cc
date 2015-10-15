@@ -8,7 +8,7 @@
 #include "UTIL/ILDConf.h"
 
 #include "DD4hep/LCDD.h"
-#include "MarlinTrk/MarlinDDKalTest.h"
+#include "MarlinTrk/MarlinKalTest.h"
 
 #include "MarlinTrk/HelixTrack.h"
 
@@ -652,39 +652,16 @@ const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( 
 	 unsigned ecal_barrel_face_ID = lcio::ILDDetID::ECAL ;
 	 unsigned ecal_endcap_face_ID = lcio::ILDDetID::ECAL_ENDCAP ;
 	 
-	 // //
-	 // // FG: this is a temporary workaround for the time where we have Mokka/Gear based tracking systems and DD4hep based 
-	 // // ones. The reason for this being that DD4hep does not allow to use the same system ID for different subdetectors
-	 // // and we have introduced additional 'tagging' detectors just inside the Ecal barrel and endcap ...
-	 // //
-	 // MarlinTrk::IMarlinTrkSystem* trksystem =  MarlinTrk::Factory::getCurrentMarlinTrkSystem() ;
+	 //
+	 // FG: this is a temporary workaround for the time where we have Mokka/Gear based tracking systems and DD4hep based ones
+	 MarlinTrk::IMarlinTrkSystem* trksystem =  MarlinTrk::Factory::getCurrentMarlinTrkSystem() ;
 	 
-	 // MarlinDDKalTest* ddtrksys = dynamic_cast< MarlinDDKalTest* >( trksystem ) ;
+	 MarlinKalTest* trksys = dynamic_cast< MarlinKalTest* >( trksystem ) ;
 	 
-	 // if( ddtrksys != 0 ) { // we are in DD4hep world ....
-	   
-	 //   DD4hep::Geometry::LCDD& lcdd = DD4hep::Geometry::LCDD::getInstance();
-	   
-	 //   try{ 
-	 //     DD4hep::Geometry::DetElement bfDE = lcdd.detector("EcalBarrelFace") ;
-	     
-	 //     ecal_barrel_face_ID = bfDE.id() ;
-	     
-	 //   } catch( std::runtime_error ){
-	     
-	 //     streamlog_out( WARNING ) << " Cannot get detector EcalBarrelFace - will not be able to compute track state at calo face "<< std::endl ;
-	 //   }
-	 //   try{ 
-	 //     DD4hep::Geometry::DetElement efDE = lcdd.detector("EcalEndcapFace") ;
-	     
-	 //     ecal_endcap_face_ID = efDE.id() ;
-	     
-	 //   } catch( std::runtime_error ){
-	     
-	 //     streamlog_out( WARNING ) << " Cannot get detector EcalEndcapFace - will not be able to compute track state at calo face "<< std::endl ;
-	 //   }
-	 // }
-	 // //=========================================================================================================
+	 if( trksys != 0 ) { // we are in KalTest world
+	   ecal_endcap_face_ID = lcio::ILDDetID::ECAL ;
+	 }
+	 //=========================================================================================================
 
 
 
