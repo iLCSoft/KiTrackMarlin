@@ -20,6 +20,16 @@
 
 Version History
 =============================================================================================================
+
+  ---------
+ | v01-08  |
+  ---------
+
+   M /KiTrackMarlin/trunk/src/Tools/Fitter.cc
+ - make track state at calo compatible with old sim/rec again
+ - fixed creation of track state at calo
+
+
   ---------
  | v01-07  |
   ---------
