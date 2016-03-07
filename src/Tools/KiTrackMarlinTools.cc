@@ -54,7 +54,7 @@ void KiTrackMarlin::setUpRootFile( std::string rootNamePath, std::string treeNam
    
    
    
-   ifstream rf ((fileNamePath + ".root").c_str());       //rf for RootFile
+   std::ifstream rf ((fileNamePath + ".root").c_str());       //rf for RootFile
    if ((rf) && (createNew)) { // The file already exists and we don't want to append
    
     int i=0;

@@ -178,7 +178,7 @@ void Fitter::fitVXD()throw( FitterException ){
    
    helixTrack.moveRefPoint(0.0, 0.0, 0.0);
    
-   const float referencePoint[3] = { helixTrack.getRefPointX() , helixTrack.getRefPointY() , helixTrack.getRefPointZ() };
+   const float referencePoint[3] = { float(helixTrack.getRefPointX()) , float(helixTrack.getRefPointY() ), float(helixTrack.getRefPointZ() )};
    
    
    /**********************************************************************************************/
@@ -375,7 +375,7 @@ void Fitter::fit()throw( FitterException ){
    
    helixTrack.moveRefPoint(0.0, 0.0, 0.0);
    
-   const float referencePoint[3] = { helixTrack.getRefPointX() , helixTrack.getRefPointY() , helixTrack.getRefPointZ() };
+   const float referencePoint[3] = { float(helixTrack.getRefPointX()) , float(helixTrack.getRefPointY()) , float(helixTrack.getRefPointZ()) };
    
    
    /**********************************************************************************************/
