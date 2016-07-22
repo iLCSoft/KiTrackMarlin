@@ -38,8 +38,8 @@ std::set< int > VXDSectorConnector::getTargetSectors ( int sector ){
 
    int iPhi_Up    = iPhi + 8;
    int iPhi_Low   = iPhi - 8;
-   int iTheta_Up  = iTheta + 1; 
-   int iTheta_Low = iTheta - 1;
+   int iTheta_Up  = iTheta + 8; 
+   int iTheta_Low = iTheta - 8;
    if (iTheta_Low < 0) iTheta_Low = 0;
    if (iTheta_Up  >= _nDivisionsInTheta) iTheta_Up = _nDivisionsInTheta-1;
    
@@ -53,7 +53,7 @@ std::set< int > VXDSectorConnector::getTargetSectors ( int sector ){
        
        unsigned layerTarget = layer - layerStep;
 
-        if (layerTarget >= 0 && layerTarget < 7 ){   // just a test to run cellular automaton over the whole VXD - SIT
+        if (layerTarget >= 0 && layerTarget < 10 ){   // just a test to run cellular automaton over the whole VXD - SIT
 	 
 	 for (int iPhi = iPhi_Low ; iPhi <= iPhi_Up ; iPhi++){
 
@@ -82,7 +82,7 @@ std::set< int > VXDSectorConnector::getTargetSectors ( int sector ){
        
        for (int iTheta = iTheta_Low ; iTheta <= iTheta_Up ; iTheta++){
 	 
-	 streamlog_out(DEBUG3) << " VXDSectorConnector: from layer " << layer << " to layer " << layerTarget << std::endl ;
+	 streamlog_out(DEBUG1) << " VXDSectorConnector: from layer " << layer << " to layer " << layerTarget << std::endl ;
 	 
 	 targetSectors.insert( 0 ) ;
        }

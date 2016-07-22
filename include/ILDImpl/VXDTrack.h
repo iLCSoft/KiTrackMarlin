@@ -2,8 +2,13 @@
 #define VXDTrack_h
 
 #include "IMPL/TrackImpl.h"
+#include "IMPL/TrackerHitImpl.h"
+#include "EVENT/TrackerHitPlane.h"
+#include "EVENT/TrackerHit.h"
 #include "MarlinTrk/IMarlinTrkSystem.h"
 #include "MarlinTrk/IMarlinTrack.h"
+
+#include <marlin/Global.h>
 
 #include <vector>
 
@@ -12,6 +17,23 @@
 #include "KiTrack/ITrack.h"
 
 #include "Tools/Fitter.h"
+
+// GEAR tools
+#include <gear/GEAR.h>
+#include <gear/GearParameters.h>
+#include <gear/VXDLayerLayout.h>
+#include <gear/VXDParameters.h>
+#include <gear/BField.h>
+#include "gear/gearsurf/MeasurementSurfaceStore.h"
+#include "gear/gearsurf/MeasurementSurface.h"
+#include "gear/gearsurf/ICoordinateSystem.h"
+#include "gear/gearsurf/CartesianCoordinateSystem.h"
+
+//#include "SpacePointBuilder.h"
+// CLHEP tools
+#include "CLHEP/Vector/ThreeVector.h"
+#include "CLHEP/Matrix/SymMatrix.h"
+#include "CLHEP/Matrix/Matrix.h"
 
 
 namespace KiTrackMarlin{
@@ -47,18 +69,17 @@ namespace KiTrackMarlin{
       virtual double getNdf() const { return _lcioTrack->getNdf(); }
       virtual double getChi2() const { return _lcioTrack->getChi2(); }
       virtual double getChi2Prob() const { return _chi2Prob; }
-      //virtual double getPT() const ;
-      /*            
+
       virtual std::vector< IHit* > getHits() const 
          { std::vector<IHit*> hits; 
          for(unsigned i=0; i<_hits.size();i++) hits.push_back( _hits[i] ); 
          return hits; }
-      */
-      virtual std::vector< IHit* > getHits() const 
-         { std::vector<IHit*> hits; 
-         for(unsigned i=0; i<_hits.size();i++) hits.push_back( _hits[i] ); 
-         return hits; }
-      
+ 
+      virtual std::vector< IMiniVector* > getMVs() const 
+         { std::vector<IMiniVector*> mvhits; 
+         for(unsigned i=0; i<_hits.size();i++) mvhits.push_back( _hits[i] ); 
+         return mvhits; }
+     
       virtual double getQI() const;
       
       
@@ -82,10 +103,9 @@ namespace KiTrackMarlin{
       
       
       double _chi2Prob;
-      
-      
-   };
 
+  };
+  
 
 
 }

@@ -107,6 +107,7 @@ void Fitter::fitVXD()throw( FitterException ){
    unsigned number_of_added_hits = 0;
    unsigned ndof_added = 0;
    std::vector< TrackerHit* > added_hits;
+   std::vector< TrackerHit* > added_hits_2D;
    
    for( it = _trackerHits.begin() ; it != _trackerHits.end() ; ++it ) {
       
@@ -166,12 +167,21 @@ void Fitter::fitVXD()throw( FitterException ){
    /*       Create a helix from the first, last and middle hit                                   */
    /**********************************************************************************************/
    
+   for (unsigned ihit=0; ihit <added_hits.size(); ++ihit) {
+     
+     // check if this a space point or 2D hit 
+     if(UTIL::BitSet32( added_hits[ihit]->getType() )[ UTIL::ILDTrkHitTypeBit::ONE_DIMENSIONAL ] == false ){
+       // then add to the list 
+       added_hits_2D.push_back(added_hits[ihit]);
+       
+     }
+   }
    
    // initialise with space-points not strips 
    // make a helix from 3 hits to get a trackstate
-   const double* x1 = added_hits[0]->getPosition();
-   const double* x2 = added_hits[ added_hits.size()/2 ]->getPosition();
-   const double* x3 = added_hits.back()->getPosition();
+   const double* x1 = added_hits_2D[0]->getPosition();
+   const double* x2 = added_hits_2D[ added_hits_2D.size()/2 ]->getPosition();
+   const double* x3 = added_hits_2D.back()->getPosition();   
    
    init_BField();
    HelixTrack helixTrack( x1, x2, x3, _bField, HelixTrack::forwards );

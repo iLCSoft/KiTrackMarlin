@@ -30,10 +30,22 @@ VXDHelixFitter::VXDHelixFitter( Track* track )throw( VXDHelixFitterException ){
 
 void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
    
+  std::vector< TrackerHit* > trackerHits2D ;
 
-   std::sort( _trackerHits.begin(), _trackerHits.end(), KiTrackMarlin::compare_TrackerHit_R );
+  for (unsigned ihit=0; ihit <_trackerHits.size(); ++ihit) {
+    
+    // check if this a space point or 2D hit 
+    if(UTIL::BitSet32( _trackerHits[ihit]->getType() )[ UTIL::ILDTrkHitTypeBit::ONE_DIMENSIONAL ] == false ){
+      // then add to the list 
+      trackerHits2D.push_back(_trackerHits[ihit]);
+      
+    }
+  }
+
+   std::sort( trackerHits2D.begin(), trackerHits2D.end(), KiTrackMarlin::compare_TrackerHit_R );
    
-   int nHits = _trackerHits.size();
+   int nHits = trackerHits2D.size();
+
    int iopt = 2;
    float chi2RPhi;
    float chi2Z;
@@ -62,50 +74,65 @@ void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
    float epar[15];
    
    for( int i=0; i<nHits; i++ ){
-      
-      
-      TrackerHit* hit = _trackerHits[i];
-      
-      xh[i] = hit->getPosition()[0];
-      yh[i] = hit->getPosition()[1];
-      zh[i] = float(hit->getPosition()[2]);
-      
-      //wrh[i] = double(1.0/(hit->getResolutionRPhi()*hit->getResolutionRPhi()));
-      //wzh[i] = 1.0/(hit->getResolutionZ()*hit->getResolutionZ());
-      //wrh[i] = double(1.0/(sqrt((hit->getCovMatrix()[0]*hit->getCovMatrix()[0]) + (hit->getCovMatrix()[2]*hit->getCovMatrix()[2]))));
-      //wzh[i] = 1.0/(hit->getCovMatrix()[5]);
-
-      rh[i] = float(sqrt(xh[i]*xh[i]+yh[i]*yh[i]));
-      ph[i] = atan2(yh[i],xh[i]);
-      if (ph[i] < 0.) 
-         ph[i] = 2.*M_PI + ph[i]; 
-      
-      // Just to debug the resolutions
-      //std::cout << " hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " Cov[0] " << hit->getCovMatrix()[0] << " Cov[2] " << hit->getCovMatrix()[2] << " Cov[5] " << hit->getCovMatrix()[5] << std::endl ;
-      
-      if( BitSet32( hit->getType() )[ UTIL::ILDTrkHitTypeBit::COMPOSITE_SPACEPOINT ] ){
-         
-         
-         float sigX = hit->getCovMatrix()[0];
-         float sigY = hit->getCovMatrix()[2];
-         wrh[i] = 1/sqrt( sigX*sigX + sigY*sigY );
-	 wzh[i] = 1.0/(hit->getCovMatrix()[5]);
-         
-	 streamlog_out(DEBUG4) << " SPACEPOINT:: hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " res RPhi " << sqrt( sigX*sigX + sigY*sigY ) << " res Z " << (hit->getCovMatrix()[5]) << std::endl ;         
-         
-      }
-      else {
-         
-         TrackerHitPlane* hitPlane = dynamic_cast<TrackerHitPlane*>( hit );
-         wrh[i] = double(1.0/( hitPlane->getdU()*hitPlane->getdU() + hitPlane->getdV()*hitPlane->getdV() ) );
-	 wzh[i] = wrh[i]; // Provisionary, for the pixel VXD - SIT
- 
-	 streamlog_out(DEBUG4) << " TRACKERHITPLANE:: hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " dU " << hitPlane->getdU() << " dV " << hitPlane->getdV()  << " 1/du^2 "<< (1/(hitPlane->getdU()*hitPlane->getdU())) <<  " 1/dv^2 "<< (1/(hitPlane->getdV()*hitPlane->getdV())) << std::endl ;
-        
-      }
-      
      
+     TrackerHit* hit = trackerHits2D[i];
+     
+     xh[i] = hit->getPosition()[0];
+     yh[i] = hit->getPosition()[1];
+     zh[i] = float(hit->getPosition()[2]);
+     
+     //wrh[i] = double(1.0/(hit->getResolutionRPhi()*hit->getResolutionRPhi()));
+     //wzh[i] = 1.0/(hit->getResolutionZ()*hit->getResolutionZ());
+     //wrh[i] = double(1.0/(sqrt((hit->getCovMatrix()[0]*hit->getCovMatrix()[0]) + (hit->getCovMatrix()[2]*hit->getCovMatrix()[2]))));
+     //wzh[i] = 1.0/(hit->getCovMatrix()[5]);
+     
+     rh[i] = float(sqrt(xh[i]*xh[i]+yh[i]*yh[i]));
+     ph[i] = atan2(yh[i],xh[i]);
+     if (ph[i] < 0.) 
+       ph[i] = 2.*M_PI + ph[i]; 
+     
+     // Just to debug the resolutions
+     //std::cout << " hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " Cov[0] " << hit->getCovMatrix()[0] << " Cov[2] " << hit->getCovMatrix()[2] << " Cov[5] " << hit->getCovMatrix()[5] << std::endl ;
+     
+     // check for composite spacepoints
+     if( BitSet32( hit->getType() )[ UTIL::ILDTrkHitTypeBit::COMPOSITE_SPACEPOINT ] ){
+       
+       std::cout << " COMPOSITE SPACEPOINT radius: " <<  rh[i] << std::endl ;
+       
+       float sigX = hit->getCovMatrix()[0];
+       float sigY = hit->getCovMatrix()[2];
+       wrh[i] = 1/sqrt( sigX*sigX + sigY*sigY );
+       wzh[i] = 1.0/(hit->getCovMatrix()[5]);
+       
+       streamlog_out(DEBUG4) << " SPACEPOINT:: hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " res RPhi " << sqrt( sigX*sigX + sigY*sigY ) << " res Z " << (hit->getCovMatrix()[5]) << std::endl ;         
+       
+     }
+     else if  (  BitSet32( hit->getType() )[ UTIL::ILDTrkHitTypeBit::ONE_DIMENSIONAL ] ) {
+       
+       // YV: FIXME: very crude hack, hard coded the SIT strip digital resolution in V 
+       std::cout << " 1D hit radius: " <<  rh[i] << std::endl ;
+       
+       TrackerHitPlane* hitPlane = dynamic_cast<TrackerHitPlane*>( hit );
+       wrh[i] = double(1.0/( hitPlane->getdU()*hitPlane->getdU()  ));
+       double resZ = 92.0  / std::sqrt( 12. ) ;
+       //double resZ = 0.003 ;
+       wzh[i] = 1.0/( resZ * resZ ); 
+
+       streamlog_out(DEBUG4) << " 1Dimensional TRACKERHITPLANE:: hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " dU " << hitPlane->getdU() << " dV " << resZ  << " 1/du^2 "<< (1/(hitPlane->getdU()*hitPlane->getdU())) <<  " 1/dv^2 "<< wzh[i] << std::endl ;
+
+     }
+     
+     else {
       
+       std::cout << " 2D hit radius: " <<  rh[i]  << std::endl ; 
+       TrackerHitPlane* hitPlane = dynamic_cast<TrackerHitPlane*>( hit );
+       wrh[i] = double(1.0/( hitPlane->getdU()*hitPlane->getdU()  ));
+       wzh[i] = wrh[i]; // pixel VXD 
+      
+
+     streamlog_out(DEBUG4) << "2D pixel TRACKERHITPLANE:: hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " dU " << hitPlane->getdU() << " dV " << hitPlane->getdV()  << " 1/du^2 "<< (1/(hitPlane->getdU()*hitPlane->getdU())) <<  " 1/dv^2 "<< (1/(hitPlane->getdV()*hitPlane->getdV())) << std::endl ;
+            
+     }     
    }
    
    
