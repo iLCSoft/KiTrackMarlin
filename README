@@ -21,6 +21,20 @@
 Version History
 =============================================================================================================
 
+
+  ---------
+ | v01-09  |
+  ---------
+
+F. Gaede
+   - made compatible with c++11
+   - removed -ansi -pedantic -Wno-long-long
+   - fixed narrowing in initializer lists
+   - added std to i/ofstream
+
+Y. Voutsinas
+   - VXD cellular automaton can cope with mini-vectors made of 1 D hits
+
   ---------
  | v01-08  |
   ---------

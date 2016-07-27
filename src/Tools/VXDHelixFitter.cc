@@ -51,7 +51,7 @@ void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
    float chi2Z;
 
    // DEBUG
-   //std::cout << " no of hits fitted " << nHits << std::endl ; 
+   //streamlog_out(DEBUG4) << " no of hits fitted " << nHits << std::endl ; 
    
    if( nHits < 3 ){
       
@@ -92,12 +92,12 @@ void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
        ph[i] = 2.*M_PI + ph[i]; 
      
      // Just to debug the resolutions
-     //std::cout << " hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " Cov[0] " << hit->getCovMatrix()[0] << " Cov[2] " << hit->getCovMatrix()[2] << " Cov[5] " << hit->getCovMatrix()[5] << std::endl ;
+     //streamlog_out(DEBUG4) << " hit's radius " << rh[i] << " R-phi uncertainty " << wrh[i] << " Z uncertainty " << wzh[i] << " Cov[0] " << hit->getCovMatrix()[0] << " Cov[2] " << hit->getCovMatrix()[2] << " Cov[5] " << hit->getCovMatrix()[5] << std::endl ;
      
      // check for composite spacepoints
      if( BitSet32( hit->getType() )[ UTIL::ILDTrkHitTypeBit::COMPOSITE_SPACEPOINT ] ){
        
-       std::cout << " COMPOSITE SPACEPOINT radius: " <<  rh[i] << std::endl ;
+       streamlog_out(DEBUG4) << " COMPOSITE SPACEPOINT radius: " <<  rh[i] << std::endl ;
        
        float sigX = hit->getCovMatrix()[0];
        float sigY = hit->getCovMatrix()[2];
@@ -110,7 +110,7 @@ void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
      else if  (  BitSet32( hit->getType() )[ UTIL::ILDTrkHitTypeBit::ONE_DIMENSIONAL ] ) {
        
        // YV: FIXME: very crude hack, hard coded the SIT strip digital resolution in V 
-       std::cout << " 1D hit radius: " <<  rh[i] << std::endl ;
+       streamlog_out(DEBUG4) << " 1D hit radius: " <<  rh[i] << std::endl ;
        
        TrackerHitPlane* hitPlane = dynamic_cast<TrackerHitPlane*>( hit );
        wrh[i] = double(1.0/( hitPlane->getdU()*hitPlane->getdU()  ));
@@ -124,7 +124,7 @@ void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
      
      else {
       
-       std::cout << " 2D hit radius: " <<  rh[i]  << std::endl ; 
+       streamlog_out(DEBUG4) << " 2D hit radius: " <<  rh[i]  << std::endl ; 
        TrackerHitPlane* hitPlane = dynamic_cast<TrackerHitPlane*>( hit );
        wrh[i] = double(1.0/( hitPlane->getdU()*hitPlane->getdU()  ));
        wzh[i] = wrh[i]; // pixel VXD 
