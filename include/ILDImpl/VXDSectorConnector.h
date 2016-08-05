@@ -22,7 +22,7 @@ namespace KiTrackMarlin{
       
    public:
       
-    VXDSectorConnector ( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP, int neighPhi, int neighTheta  ) ;
+    VXDSectorConnector ( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP  ) ;
       
       /** @return a set of all sectors that are connected to the passed sector */
       virtual std::set <int>  getTargetSectors ( int sector );
@@ -38,8 +38,7 @@ namespace KiTrackMarlin{
       unsigned _lastLayerToIP;
       unsigned _nDivisionsInPhi ;
       unsigned _nDivisionsInTheta ; 
-      int _neighPhi ;
-      int _neighTheta ;     
+   
       
    };
    
