@@ -5,7 +5,7 @@ using namespace KiTrackMarlin;
 
 
 // Constructor
-VXDSectorConnector::VXDSectorConnector( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP ){
+VXDSectorConnector::VXDSectorConnector( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP, int neighPhi, int neighTheta, int layerMax ){
    
    _sectorSystemVXD = sectorSystemVXD ;
    _layerStepMax = layerStepMax ;
@@ -14,7 +14,9 @@ VXDSectorConnector::VXDSectorConnector( const SectorSystemVXD* sectorSystemVXD ,
    _nLayers = sectorSystemVXD->getNLayers();
    _nDivisionsInPhi = sectorSystemVXD->getPhiSectors();
    _nDivisionsInTheta = sectorSystemVXD->getThetaSectors();
-
+   _neighPhi = neighPhi ;
+   _neighTheta = neighTheta ;
+   _layerMax = layerMax ;
 }
 
 
@@ -36,10 +38,10 @@ std::set< int > VXDSectorConnector::getTargetSectors ( int sector ){
 
    // search for sectors at the neighbouring theta nad phi bins
 
-   int iPhi_Up    = iPhi + 8;
-   int iPhi_Low   = iPhi - 8;
-   int iTheta_Up  = iTheta + 1; 
-   int iTheta_Low = iTheta - 1;
+   int iPhi_Up    = iPhi + _neighPhi;
+   int iPhi_Low   = iPhi - _neighPhi;
+   int iTheta_Up  = iTheta + _neighTheta; 
+   int iTheta_Low = iTheta - _neighTheta;
    if (iTheta_Low < 0) iTheta_Low = 0;
    if (iTheta_Up  >= _nDivisionsInTheta) iTheta_Up = _nDivisionsInTheta-1;
    
@@ -53,7 +55,7 @@ std::set< int > VXDSectorConnector::getTargetSectors ( int sector ){
        
        unsigned layerTarget = layer - layerStep;
 
-        if (layerTarget >= 0 && layerTarget < 10 ){   // just a test to run cellular automaton over the whole VXD - SIT
+        if (layerTarget >= 0 && layerTarget < _layerMax ){   // just a test to run cellular automaton over the whole VXD - SIT
 	 
 	 for (int iPhi = iPhi_Low ; iPhi <= iPhi_Up ; iPhi++){
 
