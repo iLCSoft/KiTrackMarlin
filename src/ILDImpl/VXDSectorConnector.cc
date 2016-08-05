@@ -5,11 +5,13 @@ using namespace KiTrackMarlin;
 
 
 // Constructor
-VXDSectorConnector::VXDSectorConnector( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP ){
+VXDSectorConnector::VXDSectorConnector( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP, int neighPhi, int neighTheta ){
    
    _sectorSystemVXD = sectorSystemVXD ;
    _layerStepMax = layerStepMax ;
    _lastLayerToIP = lastLayerToIP ;
+   _neighPhi = neighPhi ;
+   _neighTheta = neighTheta ;
 
    _nLayers = sectorSystemVXD->getNLayers();
    _nDivisionsInPhi = sectorSystemVXD->getPhiSectors();
@@ -36,10 +38,10 @@ std::set< int > VXDSectorConnector::getTargetSectors ( int sector ){
 
    // search for sectors at the neighbouring theta nad phi bins
 
-   int iPhi_Up    = iPhi + 8;
-   int iPhi_Low   = iPhi - 8;
-   int iTheta_Up  = iTheta + 8; 
-   int iTheta_Low = iTheta - 8;
+   int iPhi_Up    = iPhi + _neighPhi;
+   int iPhi_Low   = iPhi - _neighPhi;
+   int iTheta_Up  = iTheta + _neighTheta; 
+   int iTheta_Low = iTheta - _neighTheta;
    if (iTheta_Low < 0) iTheta_Low = 0;
    if (iTheta_Up  >= _nDivisionsInTheta) iTheta_Up = _nDivisionsInTheta-1;
    
