@@ -1,7 +1,7 @@
 #include "ILDImpl/FTDHit01.h"
 
 
-#include "UTIL/ILDConf.h"
+#include "UTIL/LCTrackerConf.h"
 
 using namespace KiTrackMarlin;
 
@@ -22,14 +22,14 @@ FTDHit01::FTDHit01( TrackerHit* trackerHit , const SectorSystemFTD* const sector
 
    //find out layer, module, sensor
 
-   UTIL::BitField64  cellID( ILDCellID0::encoder_string );
+   UTIL::BitField64  cellID( LCTrackerCellID::encoding_string() );
 
    cellID.setValue( trackerHit->getCellID0() );
      
-   _side   = cellID[ ILDCellID0::side ];
-   _module = cellID[ ILDCellID0::module ];
-   _sensor = cellID[ ILDCellID0::sensor ] - 1;
-   _layer = cellID[ ILDCellID0::layer ] + 1;
+   _side   = cellID[ LCTrackerCellID::side() ];
+   _module = cellID[ LCTrackerCellID::module() ];
+   _sensor = cellID[ LCTrackerCellID::sensor() ] - 1;
+   _layer = cellID[ LCTrackerCellID::layer() ] + 1;
    
    
    calculateSector();

@@ -1,7 +1,8 @@
 #include "ILDImpl/MiniVectorHit01.h"
 #include "ILDImpl/SectorSystemVXD.h"
 
-#include "UTIL/ILDConf.h"
+#include "UTIL/LCTrackerConf.h"
+#include <UTIL/ILDConf.h>
 
 #include <iostream>
 #include <algorithm>
@@ -24,12 +25,12 @@ MiniVectorHit01::MiniVectorHit01( MiniVector* miniVector , const SectorSystemVXD
 
    TrackerHitVec HitVec = miniVector->getTrackerHitVec();
 
-   UTIL::BitField64  cellID( ILDCellID0::encoder_string );
+   UTIL::BitField64  cellID( LCTrackerCellID::encoding_string() );
    cellID.setValue( HitVec[1]->getCellID0() );
    
-   int _layer = cellID[ ILDCellID0::layer ] ; // +1 to take into account the IP (considered as layer 0 ) 
+   int _layer = cellID[ LCTrackerCellID::layer() ] ; // +1 to take into account the IP (considered as layer 0 ) 
    int det_id = 0 ;
-   det_id  = cellID[lcio::ILDCellID0::subdet] ;
+   det_id  = cellID[lcio::LCTrackerCellID::subdet()] ;
    if ( det_id == lcio::ILDDetID::SIT) { _layer = _layer + 6; } 
    
    //Set the position of the VXDHit01

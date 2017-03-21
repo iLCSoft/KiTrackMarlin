@@ -8,7 +8,7 @@
 #include "TTree.h"
 #include "TFile.h"
 
-#include <UTIL/ILDConf.h>
+#include "UTIL/LCTrackerConf.h"
 
 using namespace KiTrackMarlin;
 
@@ -18,14 +18,14 @@ std::string KiTrackMarlin::getCellID0Info( int cellID0 ){
    std::stringstream s;
    
    //find out layer, module, sensor
-   UTIL::BitField64  cellID( UTIL::ILDCellID0::encoder_string );
+   UTIL::BitField64  cellID( UTIL::LCTrackerCellID::encoding_string() );
    cellID.setValue( cellID0 );
    
-   int subdet = cellID[ UTIL::ILDCellID0::subdet ] ;
-   int side   = cellID[ UTIL::ILDCellID0::side ];
-   int module = cellID[ UTIL::ILDCellID0::module ];
-   int sensor = cellID[ UTIL::ILDCellID0::sensor ];
-   int layer  = cellID[ UTIL::ILDCellID0::layer ];
+   int subdet = cellID[ UTIL::LCTrackerCellID::subdet() ] ;
+   int side   = cellID[ UTIL::LCTrackerCellID::side() ];
+   int module = cellID[ UTIL::LCTrackerCellID::module() ];
+   int sensor = cellID[ UTIL::LCTrackerCellID::sensor() ];
+   int layer  = cellID[ UTIL::LCTrackerCellID::layer() ];
    
    s << "(su" << subdet << ",si" << side << ",la" << layer << ",mo" << module << ",se" << sensor << ")";
    
@@ -36,10 +36,10 @@ std::string KiTrackMarlin::getCellID0Info( int cellID0 ){
 int KiTrackMarlin::getCellID0Layer( int cellID0 ){
    
    
-   UTIL::BitField64  cellID( UTIL::ILDCellID0::encoder_string );
+   UTIL::BitField64  cellID( UTIL::LCTrackerCellID::encoding_string() );
    cellID.setValue( cellID0 );
    
-   return cellID[ UTIL::ILDCellID0::layer ];
+   return cellID[ UTIL::LCTrackerCellID::layer() ];
    
    
 }

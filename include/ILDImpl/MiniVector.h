@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string>
 #include <EVENT/TrackerHit.h>
-#include "UTIL/ILDConf.h"
+#include "UTIL/LCTrackerConf.h"
 #include "KiTrack/IHit.h"
 
 #include "marlin/VerbosityLevels.h"
