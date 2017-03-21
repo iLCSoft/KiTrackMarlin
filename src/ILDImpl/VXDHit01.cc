@@ -1,7 +1,8 @@
 #include "ILDImpl/VXDHit01.h"
 #include "ILDImpl/SectorSystemVXD.h"
 
-#include "UTIL/ILDConf.h"
+#include "UTIL/LCTrackerConf.h"
+#include <UTIL/ILDConf.h>
 
 #include <iostream>
 #include <algorithm>
@@ -27,13 +28,13 @@ VXDHit01::VXDHit01( TrackerHit* trackerHit , const SectorSystemVXD* const sector
 
    //find out layer, module, sensor
 
-   UTIL::BitField64  cellID( ILDCellID0::encoder_string );
+   UTIL::BitField64  cellID( LCTrackerCellID::encoding_string() );
 
    //cellID.setValue( trackerHit->getCellID0() );
-   _layer = cellID[ ILDCellID0::layer ] + 1 ;   // + 1 to take into account the IP (considered as layer 0 ) 
-   //_layer = cellID[ ILDCellID0::layer ];
+   _layer = cellID[ LCTrackerCellID::layer() ] + 1 ;   // + 1 to take into account the IP (considered as layer 0 ) 
+   //_layer = cellID[ LCTrackerCellID::layer() ];
    int det_id = 0 ;
-   det_id  = cellID[lcio::ILDCellID0::subdet] ;
+   det_id  = cellID[lcio::LCTrackerCellID::subdet()] ;
    if ( det_id == lcio::ILDDetID::SIT) { _layer = _layer + 6; }   // need to find a more elegant way...
 
 

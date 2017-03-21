@@ -5,7 +5,8 @@
 #include "gear/GEAR.h"
 #include "gear/BField.h"
 #include "marlin/Global.h"
-#include "UTIL/ILDConf.h"
+#include "UTIL/LCTrackerConf.h"
+#include <UTIL/ILDConf.h>
 
 #include "DD4hep/LCDD.h"
 #include "MarlinTrk/MarlinKalTest.h"
@@ -675,7 +676,7 @@ const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( 
          EVENT::TrackerHit* last_hit_in_fit = hits_in_fit.front().first;
          
          
-         UTIL::BitField64 encoder( lcio::ILDCellID0::encoder_string ) ; 
+         UTIL::BitField64 encoder( lcio::LCTrackerCellID::encoding_string() ) ; 
          encoder.reset() ;  // reset to 0
          
 	 // ================== need to get the correct ID(s) for the calorimeter face  ============================
@@ -696,24 +697,24 @@ const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( 
 
 
 
-         encoder[lcio::ILDCellID0::subdet] =  ecal_barrel_face_ID ;
-         encoder[lcio::ILDCellID0::side]   = lcio::ILDDetID::barrel;
-         encoder[lcio::ILDCellID0::layer]  = 0 ;
+         encoder[lcio::LCTrackerCellID::subdet()] =  ecal_barrel_face_ID ;
+         encoder[lcio::LCTrackerCellID::side()]   = lcio::ILDDetID::barrel;
+         encoder[lcio::LCTrackerCellID::layer()]  = 0 ;
          
          int detElementID = 0;
          return_code = _marlinTrk->propagateToLayer(encoder.lowWord(), last_hit_in_fit, *trackStateImpl, chi2, ndf, detElementID, IMarlinTrack::modeForward ) ;
          
          if (return_code == MarlinTrk::IMarlinTrack::no_intersection ) { // try forward or backward
 	   
-	   encoder[lcio::ILDCellID0::subdet] = ecal_endcap_face_ID ;
+	   encoder[lcio::LCTrackerCellID::subdet()] = ecal_endcap_face_ID ;
 
             const TrackState* trkStateLastHit = getTrackStatePlus( lcio::TrackState::AtLastHit )->getTrackState();
             
             if (trkStateLastHit->getTanLambda()>0) {
-               encoder[lcio::ILDCellID0::side] = lcio::ILDDetID::fwd;
+               encoder[lcio::LCTrackerCellID::side()] = lcio::ILDDetID::fwd;
             }
             else{
-               encoder[lcio::ILDCellID0::side] = lcio::ILDDetID::bwd;
+               encoder[lcio::LCTrackerCellID::side()] = lcio::ILDDetID::bwd;
             }
             return_code = _marlinTrk->propagateToLayer(encoder.lowWord(), last_hit_in_fit, *trackStateImpl, chi2, ndf, detElementID, IMarlinTrack::modeForward ) ;
          }
