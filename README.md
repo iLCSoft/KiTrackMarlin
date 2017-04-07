@@ -1,5 +1,6 @@
 # KiTrackMarlin
 [![Build Status](https://travis-ci.org/iLCSoft/KiTrackMarlin.svg?branch=master)](https://travis-ci.org/iLCSoft/KiTrackMarlin)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/12356/badge.svg)](https://scan.coverity.com/projects/ilcsoft-kitrackmarlin)
 
 Implementation of classes for the use of KiTrack by Marlin
 
