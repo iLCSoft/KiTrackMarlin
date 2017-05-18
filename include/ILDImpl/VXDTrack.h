@@ -18,17 +18,6 @@
 
 #include "Tools/Fitter.h"
 
-// GEAR tools
-#include <gear/GEAR.h>
-#include <gear/GearParameters.h>
-#include <gear/VXDLayerLayout.h>
-#include <gear/VXDParameters.h>
-#include <gear/BField.h>
-#include "gear/gearsurf/MeasurementSurfaceStore.h"
-#include "gear/gearsurf/MeasurementSurface.h"
-#include "gear/gearsurf/ICoordinateSystem.h"
-#include "gear/gearsurf/CartesianCoordinateSystem.h"
-
 //#include "SpacePointBuilder.h"
 // CLHEP tools
 #include "CLHEP/Vector/ThreeVector.h"

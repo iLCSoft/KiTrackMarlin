@@ -17,7 +17,6 @@
 #include <math.h>
 
 #include <marlin/Global.h>
-#include <gear/GEAR.h>
 
 using namespace lcio ;
 

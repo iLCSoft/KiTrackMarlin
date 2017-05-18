@@ -1,5 +1,7 @@
 #include <ILDImpl/MiniVector.h>
 
+#include "MarlinTrk/IMarlinTrack.h"
+
 using namespace KiTrack;
 using namespace KiTrackMarlin;
 
@@ -117,12 +119,12 @@ double MiniVector::get3DAngleMV(MiniVector *MinVec2){
 
   double *xyz1 = new double[3] ;
   xyz1 = this->getXYZ() ;
-  gear::Vector3D v1( xyz1[0], xyz1[1], xyz1[2] ) ;
+  MarlinTrk::Vector3D v1( xyz1[0], xyz1[1], xyz1[2] ) ;
 
   double *xyz2 = new double[3] ;
   xyz2 = MinVec2->getXYZ() ;
 
-  gear::Vector3D v2( xyz2[0], xyz2[1], xyz2[2] ) ;
+  MarlinTrk::Vector3D v2( xyz2[0], xyz2[1], xyz2[2] ) ;
 
   double ScalarProd = v1.dot(v2);
   double magV1 = v1.r();

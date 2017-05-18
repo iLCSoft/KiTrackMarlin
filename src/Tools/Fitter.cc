@@ -2,14 +2,12 @@
 
 #include <algorithm>
 
-#include "gear/GEAR.h"
-#include "gear/BField.h"
 #include "marlin/Global.h"
 #include "UTIL/LCTrackerConf.h"
 #include <UTIL/ILDConf.h>
 
 #include "DD4hep/LCDD.h"
-#include "MarlinTrk/MarlinKalTest.h"
+
 
 #include "MarlinTrk/HelixTrack.h"
 
@@ -28,24 +26,13 @@ float Fitter::_bField = 3.5;//later on overwritten with the value read by geo fi
 
 void Fitter::init_BField(){
 
-  try{ 
-
-    // B field from gear
-    const gear::GearMgr* gearMgr = marlin::Global::GEAR; 
-    _bField = gearMgr->getBField().at( gear::Vector3D( 0.,0.,0.)  ).z() ;
-    streamlog_out(DEBUG1) << "---- Fitter - init_BField - _bField = " << _bField << std::endl;       
-
-  }
-  catch( gear::UnknownParameterException e ){
-
-    // B field from DD4hep
-    DD4hep::Geometry::LCDD & lcdd = DD4hep::Geometry::LCDD::getInstance();
-    const double pos[3]={0,0,0}; 
-    double bFieldVec[3]={0,0,0}; 
-    lcdd.field().magneticField(pos,bFieldVec); // get the magnetic field vector from DD4hep
-    _bField = bFieldVec[2]/dd4hep::tesla; // z component at (0,0,0)    
-
-  }
+  // B field from DD4hep
+  DD4hep::Geometry::LCDD & lcdd = DD4hep::Geometry::LCDD::getInstance();
+  const double pos[3]={0,0,0}; 
+  double bFieldVec[3]={0,0,0}; 
+  lcdd.field().magneticField(pos,bFieldVec); // get the magnetic field vector from DD4hep
+  _bField = bFieldVec[2]/dd4hep::tesla; // z component at (0,0,0)    
+  
 
 }
      
@@ -566,7 +553,7 @@ const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( 
       case lcio::TrackState::AtIP:{
          
          
-         const gear::Vector3D point(0.,0.,0.); // nominal IP
+         const MarlinTrk::Vector3D point(0.,0.,0.); // nominal IP
          
          
          return_code = _marlinTrk->propagate(point, *trackStateImpl, chi2, ndf ) ;
@@ -684,15 +671,6 @@ const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( 
 	 unsigned ecal_barrel_face_ID = lcio::ILDDetID::ECAL ;
 	 unsigned ecal_endcap_face_ID = lcio::ILDDetID::ECAL_ENDCAP ;
 	 
-	 //
-	 // FG: this is a temporary workaround for the time where we have Mokka/Gear based tracking systems and DD4hep based ones
-	 MarlinTrk::IMarlinTrkSystem* trksystem =  MarlinTrk::Factory::getCurrentMarlinTrkSystem() ;
-	 
-	 MarlinKalTest* trksys = dynamic_cast< MarlinKalTest* >( trksystem ) ;
-	 
-	 if( trksys != 0 ) { // we are in KalTest world
-	   ecal_endcap_face_ID = lcio::ILDDetID::ECAL ;
-	 }
 	 //=========================================================================================================
 
 
