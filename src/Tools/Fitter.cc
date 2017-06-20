@@ -6,15 +6,13 @@
 #include "UTIL/LCTrackerConf.h"
 #include <UTIL/ILDConf.h>
 
-#include "DD4hep/LCDD.h"
-
+#include <DD4hep/DD4hepUnits.h>
+#include <DD4hep/Detector.h>
 
 #include "MarlinTrk/HelixTrack.h"
 
 #include "Tools/KiTrackMarlinTools.h"
 
-#include "DD4hep/LCDD.h"
-#include "DD4hep/DD4hepUnits.h"
 
 using namespace MarlinTrk;
 
@@ -27,7 +25,7 @@ float Fitter::_bField = 3.5;//later on overwritten with the value read by geo fi
 void Fitter::init_BField(){
 
   // B field from DD4hep
-  DD4hep::Geometry::LCDD & lcdd = DD4hep::Geometry::LCDD::getInstance();
+  dd4hep::Detector & lcdd = dd4hep::Detector::getInstance();
   const double pos[3]={0,0,0}; 
   double bFieldVec[3]={0,0,0}; 
   lcdd.field().magneticField(pos,bFieldVec); // get the magnetic field vector from DD4hep
