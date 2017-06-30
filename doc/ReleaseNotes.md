@@ -1,3 +1,11 @@
+# v01-11
+
+* 2017-06-20 Andre Sailer ([PR#4](https://github.com/iLCSoft/KiTrackMarlin/pull/4))
+  - Adapt to DD4hep namespace change
+
+* 2017-05-18 Frank Gaede ([PR#3](https://github.com/iLCSoft/KiTrackMarlin/pull/3))
+  - remove all references to Gear and MarlinKalTest
+
 # v01-10
 
 
