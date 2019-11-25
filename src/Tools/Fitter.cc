@@ -60,7 +60,7 @@ bool compare_TrackerHit_R( EVENT::TrackerHit* a, EVENT::TrackerHit* b ){
 
 
 
-Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException ): _trkSystem( trkSystem ){
+Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem ): _trkSystem( trkSystem ){
    
  
    _trackerHits = track->getTrackerHits();
@@ -70,7 +70,7 @@ Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( Fi
    
 }
 
-Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag )throw( FitterException ): _trkSystem( trkSystem ){
+Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag ): _trkSystem( trkSystem ){
    
  
    _trackerHits = track->getTrackerHits();
@@ -80,7 +80,7 @@ Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFl
    
 }
 
-Fitter::Fitter( std::vector < TrackerHit* > trackerHits , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException ): _trkSystem( trkSystem ){
+Fitter::Fitter( std::vector < TrackerHit* > trackerHits , MarlinTrk::IMarlinTrkSystem* trkSystem ): _trkSystem( trkSystem ){
    
    _trackerHits = trackerHits;
    
@@ -91,7 +91,7 @@ Fitter::Fitter( std::vector < TrackerHit* > trackerHits , MarlinTrk::IMarlinTrkS
 
 
 
-void Fitter::fitVXD()throw( FitterException ){
+void Fitter::fitVXD(){
    
    //create the MarlinTrk
    _marlinTrk = _trkSystem->createTrack();
@@ -298,7 +298,7 @@ void Fitter::fitVXD()throw( FitterException ){
 
 
 
-void Fitter::fit()throw( FitterException ){
+void Fitter::fit(){
    
    //create the MarlinTrk
    _marlinTrk = _trkSystem->createTrack();
@@ -494,14 +494,14 @@ void Fitter::fit()throw( FitterException ){
 }
    
    
-const TrackState* Fitter::getTrackState( int trackStateLocation )throw( FitterException ){
+const TrackState* Fitter::getTrackState( int trackStateLocation ){
   
   
   return getTrackStatePlus( trackStateLocation )->getTrackState();
   
 }
 
-double Fitter::getChi2Prob( int trackStateLocation )throw( FitterException ){
+double Fitter::getChi2Prob( int trackStateLocation ){
    
    
    return ROOT::Math::chisquared_cdf_c( getChi2( trackStateLocation ) , getNdf( trackStateLocation ) );   
@@ -509,14 +509,14 @@ double Fitter::getChi2Prob( int trackStateLocation )throw( FitterException ){
 }
    
 
-double Fitter::getChi2( int trackStateLocation )throw( FitterException ){
+double Fitter::getChi2( int trackStateLocation ){
    
    
    return getTrackStatePlus( trackStateLocation )->getChi2();
    
 }
    
-   int Fitter::getNdf( int trackStateLocation )throw( FitterException ){
+   int Fitter::getNdf( int trackStateLocation ){
    
    
    return getTrackStatePlus( trackStateLocation )->getNdf();
@@ -524,7 +524,7 @@ double Fitter::getChi2( int trackStateLocation )throw( FitterException ){
 }
    
    
-const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation )throw( FitterException ){
+const TrackStatePlus* Fitter::getTrackStatePlus( int trackStateLocation ){
    
    
    // check if there is already an entry with this trackState location

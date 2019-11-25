@@ -18,7 +18,7 @@ _nSensors( nSensors ){
    
 
 
-int SectorSystemFTD::getSector( int side, unsigned layer , unsigned module , unsigned sensor )const throw( KiTrack::OutOfRange ){
+int SectorSystemFTD::getSector( int side, unsigned layer , unsigned module , unsigned sensor )const {
    
    //check if the values passed are okay:
    if ( ( side!= 1 )&&( side != -1 ) ){
@@ -85,7 +85,7 @@ int SectorSystemFTD::getSector( int side, unsigned layer , unsigned module , uns
 
 
 
-int SectorSystemFTD::getSide( int sector ) const throw ( OutOfRange ){
+int SectorSystemFTD::getSide( int sector ) const {
    
    checkSectorIsInRange( sector );
    
@@ -101,7 +101,7 @@ int SectorSystemFTD::getSide( int sector ) const throw ( OutOfRange ){
    
 }
 
-unsigned SectorSystemFTD::getLayer( int sector ) const throw ( OutOfRange ){
+unsigned SectorSystemFTD::getLayer( int sector ) const {
    
    checkSectorIsInRange( sector );
    
@@ -114,7 +114,7 @@ unsigned SectorSystemFTD::getLayer( int sector ) const throw ( OutOfRange ){
    
 }
 
-unsigned SectorSystemFTD::getModule( int sector ) const throw ( OutOfRange ){
+unsigned SectorSystemFTD::getModule( int sector ) const {
    
    
    checkSectorIsInRange( sector );
@@ -128,7 +128,7 @@ unsigned SectorSystemFTD::getModule( int sector ) const throw ( OutOfRange ){
    
    
 }
-unsigned SectorSystemFTD::getSensor( int sector ) const throw ( OutOfRange ){
+unsigned SectorSystemFTD::getSensor( int sector ) const {
    
    
    checkSectorIsInRange( sector );
@@ -142,7 +142,7 @@ unsigned SectorSystemFTD::getSensor( int sector ) const throw ( OutOfRange ){
 }
 
 
-void SectorSystemFTD::checkSectorIsInRange( int sector ) const throw ( OutOfRange ){
+void SectorSystemFTD::checkSectorIsInRange( int sector ) const {
 
 
    if ( sector > _sectorMax ){

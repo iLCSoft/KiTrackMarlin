@@ -23,13 +23,13 @@ protected:
    FitterException(){  /*no_op*/ ; } 
    
 public: 
-   virtual ~FitterException() throw() { /*no_op*/; } 
+   virtual ~FitterException() { /*no_op*/; } 
    
    FitterException( const std::string& text ){
       message = "FitterException: " + text ;
    }
    
-   virtual const char* what() const  throw() { return  message.c_str() ; } 
+   virtual const char* what() const noexcept { return  message.c_str() ; } 
    
 };
 
@@ -70,19 +70,19 @@ class Fitter{
    
 public:
    
-   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException );
-   Fitter( std::vector < TrackerHit* > trackerHits, MarlinTrk::IMarlinTrkSystem* trkSystem )throw( FitterException );
-   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag )throw( FitterException );  
+   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem );
+   Fitter( std::vector < TrackerHit* > trackerHits, MarlinTrk::IMarlinTrkSystem* trkSystem );
+   Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag );  
 
    
-   double getChi2Prob( int trackStateLocation ) throw( FitterException );
-   double getChi2( int trackStateLocation ) throw( FitterException );
-   int getNdf( int trackStateLocation ) throw( FitterException );
+   double getChi2Prob( int trackStateLocation ) ;
+   double getChi2( int trackStateLocation ) ;
+   int getNdf( int trackStateLocation ) ;
    
    //TODO: maybe add methods for custom points (location: TrackState::AtOther) In that case, the point would have to
    // be passed as well. (or only the point is passed)
    
-   const TrackState* getTrackState( int trackStateLocation ) throw( FitterException );
+   const TrackState* getTrackState( int trackStateLocation ) ;
    
    ~Fitter(){ 
       
@@ -102,11 +102,11 @@ private:
    
    void init_BField();
 
-   const TrackStatePlus* getTrackStatePlus( int trackStateLocation ) throw( FitterException );
+   const TrackStatePlus* getTrackStatePlus( int trackStateLocation ) ;
 
-   void fit()throw( FitterException );
+   void fit();
 
-   void fitVXD()throw( FitterException );
+   void fitVXD();
    
    static float _bField;
    

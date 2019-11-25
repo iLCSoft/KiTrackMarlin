@@ -101,7 +101,7 @@ void FTDTrack::addHit( IFTDHit* hit ){
 
 
 
-void FTDTrack::fit() throw( FitterException ){
+void FTDTrack::fit() {
    
    
    Fitter fitter( _lcioTrack , _trkSystem );

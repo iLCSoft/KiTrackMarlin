@@ -13,7 +13,7 @@
 #include "Tools/KiTrackMarlinTools.h"
 
 
-VXDHelixFitter::VXDHelixFitter( std::vector< TrackerHit* > trackerHits )throw( VXDHelixFitterException ){
+VXDHelixFitter::VXDHelixFitter( std::vector< TrackerHit* > trackerHits ){
    
    _trackerHits = trackerHits;
    
@@ -21,7 +21,7 @@ VXDHelixFitter::VXDHelixFitter( std::vector< TrackerHit* > trackerHits )throw( V
    
 }
 
-VXDHelixFitter::VXDHelixFitter( Track* track )throw( VXDHelixFitterException ){
+VXDHelixFitter::VXDHelixFitter( Track* track ){
    
    _trackerHits = track->getTrackerHits();
    
@@ -29,7 +29,7 @@ VXDHelixFitter::VXDHelixFitter( Track* track )throw( VXDHelixFitterException ){
 
 }
 
-void VXDHelixFitter::fit()throw( VXDHelixFitterException ){
+void VXDHelixFitter::fit(){
    
   std::vector< TrackerHit* > trackerHits2D ;
 
