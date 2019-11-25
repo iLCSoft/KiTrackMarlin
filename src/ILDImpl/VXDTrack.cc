@@ -158,7 +158,7 @@ void VXDTrack::addHit( IMiniVector* MV ){
 
 
 
-void VXDTrack::fit() throw( FitterException ){
+void VXDTrack::fit() {
    
    
   Fitter fitter( _lcioTrack , _trkSystem , 1 );

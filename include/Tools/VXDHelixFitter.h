@@ -21,13 +21,13 @@ protected:
    VXDHelixFitterException(){  /*no_op*/ ; } 
    
 public: 
-   virtual ~VXDHelixFitterException() throw() { /*no_op*/; } 
+   virtual ~VXDHelixFitterException() { /*no_op*/; } 
    
    VXDHelixFitterException( const std::string& text ){
       message = "VXDHelixFitterException: " + text ;
    }
    
-   virtual const char* what() const  throw() { return  message.c_str() ; } 
+   virtual const char* what() const noexcept { return  message.c_str() ; } 
    
 };
 
@@ -46,8 +46,8 @@ class VXDHelixFitter{
    
 public:
    
-   VXDHelixFitter( Track* track ) throw( VXDHelixFitterException );
-   VXDHelixFitter( std::vector < TrackerHit* > trackerHits ) throw( VXDHelixFitterException );
+   VXDHelixFitter( Track* track ) ;
+   VXDHelixFitter( std::vector < TrackerHit* > trackerHits ) ;
    
    
    double getChi2(){ return _chi2; }
@@ -63,7 +63,7 @@ private:
    
   
    
-   void fit()throw( VXDHelixFitterException );
+   void fit();
    
    double _chi2;
    int _Ndf;

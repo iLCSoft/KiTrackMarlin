@@ -13,7 +13,7 @@
 #include "Tools/KiTrackMarlinTools.h"
 
 
-FTDHelixFitter::FTDHelixFitter( std::vector< TrackerHit* > trackerHits )throw( FTDHelixFitterException ){
+FTDHelixFitter::FTDHelixFitter( std::vector< TrackerHit* > trackerHits ){
    
    _trackerHits = trackerHits;
    
@@ -21,7 +21,7 @@ FTDHelixFitter::FTDHelixFitter( std::vector< TrackerHit* > trackerHits )throw( F
    
 }
 
-FTDHelixFitter::FTDHelixFitter( Track* track )throw( FTDHelixFitterException ){
+FTDHelixFitter::FTDHelixFitter( Track* track ){
    
    _trackerHits = track->getTrackerHits();
    
@@ -29,7 +29,7 @@ FTDHelixFitter::FTDHelixFitter( Track* track )throw( FTDHelixFitterException ){
    
 }
 
-void FTDHelixFitter::fit()throw( FTDHelixFitterException ){
+void FTDHelixFitter::fit(){
    
    
    std::sort( _trackerHits.begin(), _trackerHits.end(), KiTrackMarlin::compare_TrackerHit_z );

@@ -21,13 +21,13 @@ protected:
    FTDHelixFitterException(){  /*no_op*/ ; } 
    
 public: 
-   virtual ~FTDHelixFitterException() throw() { /*no_op*/; } 
+   virtual ~FTDHelixFitterException() { /*no_op*/; } 
    
    FTDHelixFitterException( const std::string& text ){
       message = "FTDHelixFitterException: " + text ;
    }
    
-   virtual const char* what() const  throw() { return  message.c_str() ; } 
+   virtual const char* what() const noexcept { return  message.c_str() ; } 
    
 };
 
@@ -46,8 +46,8 @@ class FTDHelixFitter{
    
 public:
    
-   FTDHelixFitter( Track* track ) throw( FTDHelixFitterException );
-   FTDHelixFitter( std::vector < TrackerHit* > trackerHits ) throw( FTDHelixFitterException );
+   FTDHelixFitter( Track* track ) ;
+   FTDHelixFitter( std::vector < TrackerHit* > trackerHits ) ;
    
    
    double getChi2(){ return _chi2; }
@@ -63,7 +63,7 @@ private:
    
   
    
-   void fit()throw( FTDHelixFitterException );
+   void fit();
    
    double _chi2;
    int _Ndf;

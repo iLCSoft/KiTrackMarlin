@@ -43,14 +43,14 @@ namespace KiTrackMarlin{
       
       /** Calculates the sector number corresponding to the passed parameters
        */
-      int getSector( int side, unsigned layer , unsigned module , unsigned sensor ) const throw( OutOfRange );
+      int getSector( int side, unsigned layer , unsigned module , unsigned sensor ) const ;
       
       
       /** Virtual, because this method is demanded by the Interface ISectorSystem
        * 
        * @return the layer corresponding to the passed sector number
        */
-      virtual unsigned getLayer( int sector ) const throw ( OutOfRange );
+      virtual unsigned getLayer( int sector ) const ;
       
       
       /** @return some information on the sector as string */
@@ -58,15 +58,15 @@ namespace KiTrackMarlin{
       
       /** @return the side the sector is on (+1 = forward, -1 = backward)
        */
-      int getSide( int sector ) const throw ( OutOfRange );
+      int getSide( int sector ) const ;
       
       /** @return the module of the sector
        */
-      unsigned getModule( int sector ) const throw ( OutOfRange ); 
+      unsigned getModule( int sector ) const ; 
       
       /** @return the sensor of the sector
        */
-      unsigned getSensor( int sector ) const throw ( OutOfRange );
+      unsigned getSensor( int sector ) const ;
       
       
       
@@ -82,7 +82,7 @@ namespace KiTrackMarlin{
       
       int _sectorMax;
       
-      void checkSectorIsInRange( int sector ) const throw ( OutOfRange );
+      void checkSectorIsInRange( int sector ) const ;
       
    };
 
