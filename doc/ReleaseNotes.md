@@ -1,3 +1,8 @@
+# v01-13
+
+* 2019-11-25 Remi Ete ([PR#5](https://github.com/iLCSoft/KiTrackMarlin/pull/5))
+  - Remove dynamic exception specifier (c++17 compatibility)
+
 # v01-12
 
 # v01-11
