@@ -1,3 +1,9 @@
+# v01-13-01
+
+* 2022-06-28 Thomas Madlener ([PR#6](https://github.com/iLCSoft/KiTrackMarlin/pull/6))
+  - Migrate CI to github actions and remove travis CI config
+  - Make doxygen cmake config work with newer cmake versions (>= 3.17)
+
 # v01-13
 
 * 2019-11-25 Remi Ete ([PR#5](https://github.com/iLCSoft/KiTrackMarlin/pull/5))
