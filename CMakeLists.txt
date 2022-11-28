@@ -97,6 +97,13 @@ AUX_SOURCE_DIRECTORY( ./src/ILDImpl library_sources )
 AUX_SOURCE_DIRECTORY( ./src/Tools library_sources )
 
 
+IF(APPLE)
+  # builds only on Linux
+  LIST(FILTER library_sources EXCLUDE REGEX "./src/Tools/Timer.cc")
+ENDIf()
+
+
+
 
 ADD_SHARED_LIBRARY( ${PROJECT_NAME} ${library_sources} )
 INSTALL_SHARED_LIBRARY( ${PROJECT_NAME} DESTINATION lib )
