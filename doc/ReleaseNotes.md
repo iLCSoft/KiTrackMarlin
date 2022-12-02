@@ -1,3 +1,11 @@
+# v01-13-02
+
+* 2022-12-02 Thomas Madlener ([PR#8](https://github.com/iLCSoft/KiTrackMarlin/pull/8))
+  - Remove the deprecate gcc8 based CI build, and update github actions to the latest available versions.
+
+* 2022-12-02 Valentin Volkl ([PR#7](https://github.com/iLCSoft/KiTrackMarlin/pull/7))
+  - cmake: exclude Linux-only "Timer" to fix build on macos
+
 # v01-13-01
 
 * 2022-06-28 Thomas Madlener ([PR#6](https://github.com/iLCSoft/KiTrackMarlin/pull/6))
