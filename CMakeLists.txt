@@ -98,9 +98,14 @@ AUX_SOURCE_DIRECTORY( ./src/Tools library_sources )
 
 
 IF(APPLE)
-  # builds only on Linux
-  LIST(FILTER library_sources EXCLUDE REGEX "./src/Tools/Timer.cc")
-ENDIf()
+    # builds only on Linux
+    LIST(FILTER library_sources EXCLUDE REGEX "./src/Tools/Timer.cc")
+ENDIF()
+
+IF(CMAKE_SYSTEM_PROCESSOR MATCHES "arm64|aarch64")
+    # exclude Timer.cc on arm64 systems
+    LIST(FILTER library_sources EXCLUDE REGEX "./src/Tools/Timer.cc")
+ENDIF()
 
 
 
