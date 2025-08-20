@@ -44,14 +44,14 @@ namespace KiTrackMarlin{
       
    protected:
       
-      TrackerHit* _trackerHit;
+      TrackerHit* _trackerHit{nullptr};
       
       
-      int _layer;
-      int _phi;
-      int _theta;
+      int _layer{};
+      int _phi{};
+      int _theta{};
       
-      const SectorSystemVXD* _sectorSystemVXD;
+      const SectorSystemVXD* _sectorSystemVXD{nullptr};
       
       /** Calculates and sets the sector number
        */

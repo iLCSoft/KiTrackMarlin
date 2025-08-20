@@ -9,11 +9,11 @@ SectorSystemFTD::SectorSystemFTD( unsigned nLayers , unsigned nModules , unsigne
    
 
 _nModules( nModules ),
-_nSensors( nSensors ){
+_nSensors( nSensors ),
+_sectorMax(2 * nLayers * nModules * nSensors - 1) {
    
    _nLayers = nLayers;
-   _sectorMax = 2*nLayers*nModules*nSensors - 1;
-   
+
 }
    
 

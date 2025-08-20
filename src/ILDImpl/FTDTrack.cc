@@ -21,22 +21,15 @@ bool compare_IHit_z( IHit* a, IHit* b ){
 
 
 
-FTDTrack::FTDTrack( MarlinTrk::IMarlinTrkSystem* trkSystem ){
-   
-   _trkSystem = trkSystem;
-   _chi2Prob = 0.;
- 
+FTDTrack::FTDTrack( MarlinTrk::IMarlinTrkSystem* trkSystem ) :
+   _trkSystem(trkSystem), _chi2Prob(0.)
+{
    _lcioTrack = new TrackImpl();
-   
-   
 }
 
-FTDTrack::FTDTrack( std::vector< IFTDHit* > hits , MarlinTrk::IMarlinTrkSystem* trkSystem ){
-   
-   
-   _trkSystem = trkSystem;
-   _chi2Prob = 0.;
-   
+FTDTrack::FTDTrack( std::vector< IFTDHit* > hits , MarlinTrk::IMarlinTrkSystem* trkSystem ) :
+   _trkSystem(trkSystem), _chi2Prob(0.)
+{
    _lcioTrack = new TrackImpl();
    
    for( unsigned i=0; i < hits.size(); i++ ){
@@ -49,14 +42,13 @@ FTDTrack::FTDTrack( std::vector< IFTDHit* > hits , MarlinTrk::IMarlinTrkSystem* 
 }
 
 
-FTDTrack::FTDTrack( const FTDTrack& f ){
+FTDTrack::FTDTrack( const FTDTrack& f ) : _chi2Prob(f._chi2Prob) {
 
    //make a new copied lcio track
    _lcioTrack = new TrackImpl( *f._lcioTrack );
    
    
    _hits = f._hits;
-   _chi2Prob = f._chi2Prob;
    _trkSystem = f._trkSystem;
 
 }

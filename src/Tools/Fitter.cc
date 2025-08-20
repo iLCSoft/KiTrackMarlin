@@ -70,7 +70,7 @@ Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem ): _trkSys
    
 }
 
-Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag ): _trkSystem( trkSystem ){
+Fitter::Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int ): _trkSystem( trkSystem ){
    
  
    _trackerHits = track->getTrackerHits();
@@ -242,7 +242,7 @@ void Fitter::fitVXD(){
       fit_status = _marlinTrk->fit() ; 
       
    }
-   catch( MarlinTrk::Exception e ){
+   catch( const MarlinTrk::Exception& e ){
       
       std::stringstream s;
       s << "Fitter::fit(): Couldn't fit, MarlinTrk->fit() gave: " << e.what() << "\n";
@@ -439,7 +439,7 @@ void Fitter::fit(){
       fit_status = _marlinTrk->fit() ; 
       
    }
-   catch( MarlinTrk::Exception e ){
+   catch( const MarlinTrk::Exception& e ){
       
       std::stringstream s;
       s << "Fitter::fit(): Couldn't fit, MarlinTrk->fit() gave: " << e.what() << "\n";

@@ -19,12 +19,14 @@ namespace KiTrackMarlin{
       
       VXDHitSimple( float x , float y , float z , int layer , int phi, int theta, const SectorSystemVXD* const sectorSystemVXD );
       
-      
-      
-      virtual const ISectorSystem* getSectorSystem() const { return _sectorSystemVXD; };
-      
-      virtual ~VXDHitSimple(){}
-      
+      VXDHitSimple(const VXDHitSimple&) = default;
+      VXDHitSimple& operator=(const VXDHitSimple&) = default;
+      VXDHitSimple( VXDHitSimple&&) = default;
+      VXDHitSimple& operator=(VXDHitSimple&&) = default;
+      ~VXDHitSimple() override = default;
+
+      const ISectorSystem* getSectorSystem() const override { return _sectorSystemVXD; };
+
    private:
       
       int _layer;

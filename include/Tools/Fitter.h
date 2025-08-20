@@ -18,12 +18,12 @@ class FitterException : public std::exception {
    
    
 protected:
-   std::string message ;
+   std::string message{};
    
-   FitterException(){  /*no_op*/ ; } 
+   FitterException() = default;
    
 public: 
-   virtual ~FitterException() { /*no_op*/; } 
+   virtual ~FitterException() = default;
    
    FitterException( const std::string& text ){
       message = "FitterException: " + text ;
@@ -74,7 +74,9 @@ public:
    Fitter( std::vector < TrackerHit* > trackerHits, MarlinTrk::IMarlinTrkSystem* trkSystem );
    Fitter( Track* track , MarlinTrk::IMarlinTrkSystem* trkSystem, int VXDFlag );  
 
-   
+   Fitter( const Fitter& f ) = delete;
+   Fitter& operator= ( Fitter const& f ) = delete;
+ 
    double getChi2Prob( int trackStateLocation ) ;
    double getChi2( int trackStateLocation ) ;
    int getNdf( int trackStateLocation ) ;
@@ -111,20 +113,18 @@ private:
    static float _bField;
    
    
-   std::vector< TrackerHit* > _trackerHits;
+   std::vector< TrackerHit* > _trackerHits{};
    
    /** here the created TrackStates (plus) are stored */
-   std::vector< const TrackStatePlus* > _trackStatesPlus;
+   std::vector< const TrackStatePlus* > _trackStatesPlus{};
    
-   MarlinTrk::IMarlinTrkSystem* _trkSystem;
+   MarlinTrk::IMarlinTrkSystem* _trkSystem{nullptr};
    
-   MarlinTrk::IMarlinTrack* _marlinTrk;
+   MarlinTrk::IMarlinTrack* _marlinTrk{nullptr};
    
    // No copy constructor or assignment needed so far. so private for safety
    // If they are needed, they need to be implemented in a clean way first!
-   Fitter( const Fitter& f ){};
-   Fitter& operator= ( Fitter const& f ){return *this;}
-   
+
 };
 
 #endif

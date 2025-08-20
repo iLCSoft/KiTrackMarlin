@@ -13,21 +13,16 @@
 #include "Tools/KiTrackMarlinTools.h"
 
 
-VXDHelixFitter::VXDHelixFitter( std::vector< TrackerHit* > trackerHits ){
-   
-   _trackerHits = trackerHits;
-   
+VXDHelixFitter::VXDHelixFitter( std::vector< TrackerHit* > trackerHits ) :
+  _trackerHits(trackerHits) {
    fit();
-   
 }
 
-VXDHelixFitter::VXDHelixFitter( Track* track ){
-   
-   _trackerHits = track->getTrackerHits();
-   
+VXDHelixFitter::VXDHelixFitter( Track* track ) :
+  _trackerHits  (track->getTrackerHits()) {
    fit();
-
 }
+
 
 void VXDHelixFitter::fit(){
    
