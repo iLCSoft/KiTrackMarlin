@@ -1,5 +1,6 @@
 # KiTrackMarlin
 [![linux](https://github.com/iLCSoft/KiTrackMarlin/actions/workflows/linux.yml/badge.svg)](https://github.com/iLCSoft/KiTrackMarlin/actions/workflows/linux.yml)
+[![keyh4ep](https://github.com/iLCSoft/KiTrackMarlin/actions/workflows/key4hep.yml/badge.svg)](https://github.com/iLCSoft/KiTrackMarlin/actions/workflows/key4hep.yml)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/12356/badge.svg)](https://scan.coverity.com/projects/ilcsoft-kitrackmarlin)
 
 Implementation of classes for the use of KiTrack by Marlin
