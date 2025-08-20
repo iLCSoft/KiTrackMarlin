@@ -98,7 +98,7 @@ AUX_SOURCE_DIRECTORY( ./src/Tools library_sources )
 
 
 IF(CMAKE_SYSTEM_PROCESSOR MATCHES "arm64|aarch64")
-    # exclude Timer.cc on arm64 systems
+    # exclude Timer.cc on arm64 systems, since it has some x86 assembly statements
     LIST(FILTER library_sources EXCLUDE REGEX "./src/Tools/Timer.cc")
 ENDIF()
 
