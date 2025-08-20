@@ -69,7 +69,7 @@ namespace KiTrackMarlin{
 
       unsigned getNLayers() const ;
 
-      virtual ~SectorSystemVXD(){}
+      ~SectorSystemVXD() override = default;
       
    private:
       

@@ -28,15 +28,19 @@ namespace KiTrackMarlin{
 
   public:
     
-    TrackerHitVec HitVec ;
+    TrackerHitVec HitVec{};
     
     // Class constructor
     MiniVector(EVENT::TrackerHit * outer, EVENT::TrackerHit * inner);
     
     MiniVector(TrackerHitVec hitPair);
     
-    ~MiniVector();
-    
+    MiniVector(const MiniVector&) = default;
+    MiniVector& operator=(const MiniVector&) = default;
+    MiniVector( MiniVector&&) = default;
+    MiniVector& operator=(MiniVector&&) = default;
+    ~MiniVector() override = default;
+
     // returns the TrackerHitVec 
     TrackerHitVec getTrackerHitVec() ;
     
@@ -60,12 +64,12 @@ namespace KiTrackMarlin{
     // Gives the position of the mini-vector
     double * getPosition() ;
 
-    virtual const ISectorSystem* getSectorSystem() const { return _sectorSystemVXD; };
-      
+    const ISectorSystem* getSectorSystem() const override { return _sectorSystemVXD; };
+
 
   protected:
 
-    const SectorSystemVXD* _sectorSystemVXD;
+    const SectorSystemVXD* _sectorSystemVXD{nullptr};
     
   };
 

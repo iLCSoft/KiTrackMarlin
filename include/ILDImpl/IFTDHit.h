@@ -38,19 +38,19 @@ namespace KiTrackMarlin{
       
       
       
-      virtual const ISectorSystem* getSectorSystem() const { return _sectorSystemFTD; };
+      const ISectorSystem* getSectorSystem() const override { return _sectorSystemFTD; };
       
    protected:
       
-      TrackerHit* _trackerHit;
+      TrackerHit* _trackerHit{nullptr};
       
       
-      int _side;
-      unsigned _layer;
-      unsigned _module;
-      unsigned _sensor;
+      int _side{};
+      unsigned _layer{};
+      unsigned _module{};
+      unsigned _sensor{};
       
-      const SectorSystemFTD* _sectorSystemFTD;
+      const SectorSystemFTD* _sectorSystemFTD{nullptr};
       
       /** Calculates and sets the sector number
        */

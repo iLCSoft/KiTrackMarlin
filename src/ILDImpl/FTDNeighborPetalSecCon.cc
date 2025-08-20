@@ -4,11 +4,9 @@
 using namespace KiTrackMarlin;
 
 
-FTDNeighborPetalSecCon::FTDNeighborPetalSecCon( const SectorSystemFTD* sectorSystemFTD ){
-   
-   _sectorSystemFTD = sectorSystemFTD;
-     
-}
+FTDNeighborPetalSecCon::FTDNeighborPetalSecCon( const SectorSystemFTD* sectorSystemFTD ) :
+  _sectorSystemFTD(sectorSystemFTD)
+{}
 
 
 

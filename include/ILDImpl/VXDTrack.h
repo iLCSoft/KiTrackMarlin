@@ -83,15 +83,15 @@ namespace KiTrackMarlin{
       /** the hits the track consists of
        */
       //std::vector< IVXDHit* > _hits;
-      std::vector< IMiniVector* > _hits;     
+      std::vector< IMiniVector* > _hits{};
       
-      IMPL::TrackImpl* _lcioTrack;
+      IMPL::TrackImpl* _lcioTrack{nullptr};
       
       // for fitting
-      MarlinTrk::IMarlinTrkSystem* _trkSystem;
+      MarlinTrk::IMarlinTrkSystem* _trkSystem{nullptr};
       
       
-      double _chi2Prob;
+      double _chi2Prob{};
 
   };
   

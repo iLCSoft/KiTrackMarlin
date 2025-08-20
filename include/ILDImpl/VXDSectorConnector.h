@@ -25,10 +25,15 @@ namespace KiTrackMarlin{
     VXDSectorConnector ( const SectorSystemVXD* sectorSystemVXD , unsigned layerStepMax, unsigned lastLayerToIP, int neighPhi = 8,  int neighTheta = 1, int layerMax = 10  ) ;
       
       /** @return a set of all sectors that are connected to the passed sector */
-      virtual std::set <int>  getTargetSectors ( int sector );
-      
-      virtual ~VXDSectorConnector(){};
-      
+      std::set <int>  getTargetSectors ( int sector ) override;
+
+      VXDSectorConnector(const VXDSectorConnector&) = default;
+      VXDSectorConnector& operator=(const VXDSectorConnector&) = default;
+      VXDSectorConnector( VXDSectorConnector&&) = default;
+      VXDSectorConnector& operator=(VXDSectorConnector&&) = default;
+      ~VXDSectorConnector() override = default;
+
+
    private:
       
       const SectorSystemVXD* _sectorSystemVXD;

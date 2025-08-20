@@ -5,14 +5,13 @@ using namespace KiTrackMarlin;
 
 
 
-FTDSectorConnector::FTDSectorConnector( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax, unsigned lastLayerToIP){
-   
-   _sectorSystemFTD = sectorSystemFTD;
-   _layerStepMax = layerStepMax;
-   _lastLayerToIP = lastLayerToIP;
-   _petalStepMax = petalStepMax;
-   
-}
+FTDSectorConnector::FTDSectorConnector( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax, unsigned lastLayerToIP) :
+   _sectorSystemFTD(sectorSystemFTD),
+   _layerStepMax(layerStepMax),
+   _petalStepMax(petalStepMax),
+   _lastLayerToIP(lastLayerToIP)
+{}
+
 
 
 

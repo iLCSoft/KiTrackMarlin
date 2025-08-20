@@ -30,12 +30,17 @@ namespace KiTrackMarlin{
        *  @param lastLayerToIP the highest layer from where a direct jump to the IP is allowed
        */
       FTDSectorConnector ( const SectorSystemFTD* sectorSystemFTD , unsigned layerStepMax , unsigned petalStepMax , unsigned lastLayerToIP);
-      
+
+      FTDSectorConnector(const FTDSectorConnector&) = default;
+      FTDSectorConnector& operator=(const FTDSectorConnector&) = default;
+      FTDSectorConnector( FTDSectorConnector&&) = default;
+      FTDSectorConnector& operator=(FTDSectorConnector&&) = default;
+      ~FTDSectorConnector() override = default;
+
       /** @return a set of all sectors that are connected to the passed sector */
-      virtual std::set <int>  getTargetSectors ( int sector );
+      std::set <int>  getTargetSectors  ( int sector ) override;
       
-      virtual ~FTDSectorConnector(){};
-      
+
    private:
       
       const SectorSystemFTD* _sectorSystemFTD;

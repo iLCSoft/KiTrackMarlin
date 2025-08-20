@@ -18,13 +18,16 @@ namespace KiTrackMarlin{
    public:
       
       FTDHitSimple( float x , float y , float z , int side, unsigned layer , unsigned module, unsigned sensor, const SectorSystemFTD* const sectorSystemFTD );
+
+      FTDHitSimple(const FTDHitSimple&) = default;
+      FTDHitSimple& operator=(const FTDHitSimple&) = default;
+      FTDHitSimple( FTDHitSimple&&) = default;
+      FTDHitSimple& operator=(FTDHitSimple&&) = default;
+      ~FTDHitSimple() override = default;
+
+      const ISectorSystem* getSectorSystem() const override { return _sectorSystemFTD; };
       
-      
-      
-      virtual const ISectorSystem* getSectorSystem() const { return _sectorSystemFTD; };
-      
-      virtual ~FTDHitSimple(){}
-      
+
    private:
       
       int _side;

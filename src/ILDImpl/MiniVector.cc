@@ -20,17 +20,13 @@ MiniVector::MiniVector( TrackerHitVec hitPair){
 
 }
 
-MiniVector::~MiniVector(){
-
-}
-
 
 double * MiniVector::getPosition(){
 
-  double x_outer = HitVec[0]->getPosition()[0];
-  double y_outer = HitVec[0]->getPosition()[1];
-  double z_outer = HitVec[0]->getPosition()[2];
-  
+  // double x_outer = HitVec[0]->getPosition()[0];
+  // double y_outer = HitVec[0]->getPosition()[1];
+  // double z_outer = HitVec[0]->getPosition()[2];
+
   double x_inner = HitVec[1]->getPosition()[0];
   double y_inner = HitVec[1]->getPosition()[1];
   double z_inner = HitVec[1]->getPosition()[2];
@@ -137,5 +133,3 @@ double MiniVector::get3DAngleMV(MiniVector *MinVec2){
   return Angle3D ;
 
 }
-
-
