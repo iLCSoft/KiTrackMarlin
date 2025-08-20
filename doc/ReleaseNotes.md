@@ -1,3 +1,12 @@
+# v01-14
+
+* 2025-08-20 Thomas Madlener ([PR#11](https://github.com/iLCSoft/KiTrackMarlin/pull/11))
+  - Add Key4hep based workflows for CI and switch to clicdp nightlies that still exist
+  - Fix all warnings that were flagged in CI (preserving existing behavior)
+
+* 2025-08-20 Federico Meloni ([PR#10](https://github.com/iLCSoft/KiTrackMarlin/pull/10))
+  - Exclude Timer.cc from being built on arm64
+
 # v01-13-02
 
 * 2022-12-02 Thomas Madlener ([PR#8](https://github.com/iLCSoft/KiTrackMarlin/pull/8))
