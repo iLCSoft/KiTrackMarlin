@@ -1,3 +1,12 @@
+# v01-15
+
+* 2026-11-11 Juan Miguel Carceller ([PR#13](https://github.com/iLCSoft/KiTrackMarlin/pull/13))
+  - Require CMake 3.10 to fix `Compatibility with CMake < 3.5 has been removed from CMake.`
+  - Stop requesting the removed `export_library_dependencies()` command and remove the obsolete LibDeps include from the installed package config.
+
+* 2026-09-10 Thomas Madlener ([PR#12](https://github.com/iLCSoft/KiTrackMarlin/pull/12))
+  - Switch to the latest version of the key4hep-build workflow
+
 # v01-14
 
 * 2025-08-20 Thomas Madlener ([PR#11](https://github.com/iLCSoft/KiTrackMarlin/pull/11))
