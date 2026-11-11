@@ -1,7 +1,7 @@
 ########################################################
 # cmake file for building Marlin example Package
 # @author Jan Engels, Desy IT
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)
 ########################################################
 
 
@@ -128,4 +128,4 @@ INCLUDE_DIRECTORIES( ${ILCTEST_INCLUDE_DIRS} )
 DISPLAY_STD_VARIABLES()
 
 # generate and install following configuration files
-GENERATE_PACKAGE_CONFIGURATION_FILES( KiTrackMarlinConfig.cmake KiTrackMarlinConfigVersion.cmake KiTrackMarlinLibDeps.cmake )
+GENERATE_PACKAGE_CONFIGURATION_FILES( KiTrackMarlinConfig.cmake KiTrackMarlinConfigVersion.cmake )
