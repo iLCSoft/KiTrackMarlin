@@ -52,10 +52,6 @@ CHECK_PACKAGE_LIBS( KiTrackMarlin KiTrackMarlin )
 
 
 
-# ---------- libraries dependencies -------------------------------------------
-# this sets KiTrackMarlin_${COMPONENT}_LIB_DEPENDS variables
-INCLUDE( "${KiTrackMarlin_ROOT}/lib/cmake/KiTrackMarlinLibDeps.cmake" )
- 
 
 
 
